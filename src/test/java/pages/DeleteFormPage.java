@@ -2,7 +2,7 @@ package pages;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class DeleteForm {
+public class DeleteFormPage {
 
     public void clearSpace () {
 

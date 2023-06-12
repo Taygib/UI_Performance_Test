@@ -1,6 +1,5 @@
 package test;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -25,127 +24,112 @@ public class FunctionalTesting extends TastBase {
 
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
 
-        // заказать услугу в правом верхнем углу
-        $("#masthead").find(byText("Заказать услугу")).click();
+        step("Заказать услугу в правом верхнем углу", () -> {
+            orderService.clickOnOrderServiceInTheUpperRightCorner();
+            orderService.titleСheck();
 
-        $(".premium-modal-box-modal-title").shouldHave(text("Свяжитесь с нами"));
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Имя"));
-        $("[name=your-name]").click();
-        $("[name=your-name]").setValue("граф");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Фамилия"));
-        $("[name=your-surname]").click();
-        $("[name=your-surname]").setValue("краснов");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Email"));
-        $("[name=your-email]").click();
-        $("[name=your-email]").setValue("hghghg@mail.ru");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Телефон"));
-        $("[name=your-tel]").click();
-        $("[name=your-tel]").setValue("7777777777");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Компания"));
-        $("[name=your-organization]").click();
-        $("[name=your-organization]").setValue("FunctionalLab");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Сообщение"));
-        $("[name=your-message]").click();
-        $("[name=your-message]").setValue("FunctionalTest");
-
-        $("[value=Отправить]").hover();
-
-        $(".premium-modal-box-close-button-container").click();
-
-        // заказать услугу под названием Функциональное тестирование
-
-        $(".col-12").shouldHave(text("Функциональное тестирование"));
-        $(".col-12").shouldHave(text("Сделайте шаг навстречу качеству"));
-
-        $(".testing_btn").find(byText("Заказать услугу")).click();
-
-        //удаление заполненных полей
-        step("удаление заполненных полей", () -> {
-            deleteForm.clearSpace();
+            step("Имя", () -> {
+                orderService.writeName();
+            });
+            step("Фамилия", () -> {
+                orderService.writeSurname();
+            });
+            step("Email", () -> {
+                orderService.writeEmail();
+            });
+            step("Телефон", () -> {
+                orderService.writeTelephone();
+            });
+            step("Название компании", () -> {
+                orderService.writeCompany();
+            });
+            step("Сообщение", () -> {
+                orderService.writeMessage();
+            });
+            step("Навести курсор на кнопку отправить", () -> {
+                orderService.hoverToSend();
+            });
+            step("Закрыть окно заказа услуг", () -> {
+                orderService.closeContainer();
+            });
         });
 
-        $(".premium-modal-box-modal-title").shouldHave(text("Свяжитесь с нами"));
+        step(" под названием Функциональное тестирование нажать кнопку Заказать услугу", () -> {
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Имя"));
-        $("[name=your-name]").click();
-        $("[name=your-name]").setValue("граф");
+            $(".col-12").shouldHave(text("Функциональное тестирование"));
+            $(".col-12").shouldHave(text("Сделайте шаг навстречу качеству"));
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Фамилия"));
-        $("[name=your-surname]").click();
-        $("[name=your-surname]").setValue("краснов");
+            orderService.clickOnOrderServiceButtonCalledFunctionalTesting();
+            orderService.titleСheck();
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Email"));
-        $("[name=your-email]").click();
-        $("[name=your-email]").setValue("hghghg@mail.ru");
+            step("удаление заполненных полей", () -> {
+                deleteForm.clearSpace();
+            });
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Телефон"));
-        $("[name=your-tel]").click();
-        $("[name=your-tel]").setValue("7777777777");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Компания"));
-        $("[name=your-organization]").click();
-        $("[name=your-organization]").setValue("FunctionalLab");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Сообщение"));
-        $("[name=your-message]").click();
-        $("[name=your-message]").setValue("FunctionalTest");
-
-        $("[value=Отправить]").hover();
-
-        $(".premium-modal-box-close-button-container").click();
-
-        // заказать услугу под названием Перфоманс лаб - это
-
-
-        $(".inf").shouldHave(text("перфоманс лаб - это"));
-        $(".testing_btn").find(byText("Заказать услугу")).click();
-
-        //удаление заполненных полей
-        step("удаление заполненных полей", () -> {
-            deleteForm.clearSpace();
+            step("Имя", () -> {
+                orderService.writeName();
+            });
+            step("Фамилия", () -> {
+                orderService.writeSurname();
+            });
+            step("Email", () -> {
+                orderService.writeEmail();
+            });
+            step("Телефон", () -> {
+                orderService.writeTelephone();
+            });
+            step("Название компании", () -> {
+                orderService.writeCompany();
+            });
+            step("Сообщение", () -> {
+                orderService.writeMessage();
+            });
+            step("Навести курсор на кнопку отправить", () -> {
+                orderService.hoverToSend();
+            });
+            step("Закрыть окно заказа услуг", () -> {
+                orderService.closeContainer();
+            });
         });
 
-        $(".premium-modal-box-modal-title").shouldHave(text("Свяжитесь с нами"));
+        step("Заказать услугу под названием Перфоманс лаб - это", () -> {
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Имя"));
-        $("[name=your-name]").click();
-        $("[name=your-name]").setValue("граф");
+            $(".inf").shouldHave(text("перфоманс лаб - это"));
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Фамилия"));
-        $("[name=your-surname]").click();
-        $("[name=your-surname]").setValue("краснов");
+            orderService.clickOnOrderServiceButtonCalledPerformanceLabIs();
+            orderService.titleСheck();
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Email"));
-        $("[name=your-email]").click();
-        $("[name=your-email]").setValue("hghghg@mail.ru");
+            step("удаление заполненных полей", () -> {
+                deleteForm.clearSpace();
+            });
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Телефон"));
-        $("[name=your-tel]").click();
-        $("[name=your-tel]").setValue("7777777777");
+            step("Имя", () -> {
+                orderService.writeName();
+            });
+            step("Фамилия", () -> {
+                orderService.writeSurname();
+            });
+            step("Email", () -> {
+                orderService.writeEmail();
+            });
+            step("Телефон", () -> {
+                orderService.writeTelephone();
+            });
+            step("Название компании", () -> {
+                orderService.writeCompany();
+            });
+            step("Сообщение", () -> {
+                orderService.writeMessage();
+            });
+            step("Навести курсор на кнопку отправить", () -> {
+                orderService.hoverToSend();
+            });
+            step("Закрыть окно заказа услуг", () -> {
+                orderService.closeContainer();
+            });
+        });
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Компания"));
-        $("[name=your-organization]").click();
-        $("[name=your-organization]").setValue("FunctionalLab");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Сообщение"));
-        $("[name=your-message]").click();
-        $("[name=your-message]").setValue("FunctionalTest");
-
-        $("[value=Отправить]").hover();
-
-        $(".premium-modal-box-close-button-container").click();
-
-
-        // find(byText("Заказать услугу")).click();
-
-
-        sleep(4000);
+        sleep(2000);
     }
 
     @Test
@@ -153,66 +137,62 @@ public class FunctionalTesting extends TastBase {
 
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
 
-        $(".clients").shouldHave(text("НАШИ КЛИЕНТЫ")).hover();
-        $(".clients").find(byText("Посмотреть всех клиентов")).click();
+        step("Название раздела НАШИ КЛИЕНТЫ", () -> {
+            clients.sectionOurClients();
+        });
 
-        // как помогает Перфоманс Лаб
-        $("#client-page-title").shouldHave(text("Нам доверяют тысячи клиентов во всем мире"));
+        step("Переход в раздел Посмотреть всех клиентов ", () -> {
+            clients.clickOnClients();
+        });
 
-        $(".module-features").shouldHave(text("Узнайте как Перфоманс Лаб помогает клиентам:"));
-
-        $(".module-features").shouldHave(text("Улучшить качество программных продуктов"));
-        $(".module-features").shouldHave(text("Протестировать приложения"));
-        $(".module-features").shouldHave(text("Повысить удовлетворенность пользователей"));
-
-        $(".module-features").find(byText("Читать кейсы")).click();
+        step("Как помогает Перфоманс Лаб", () -> {
+            clients.howPerformanceLabHelp();
+        });
+        step("Переход в раздел кейсы", () -> {
+            clients.clickOnReadCases();
+        });
 
         Selenide.back();
 
-        $(".start-block").shouldHave(text("Получите предложение уже сегодня"));
-        //проверка контактной информации
-        $(".info-contacts").shouldHave(text("Свяжитесь с нами"));
-        $(".info-contacts").shouldHave(text("+7 495 989 6165"));
-        $(".info-contacts").shouldHave(text("Пн-Пт с 10 до 19 часов"));
-        $(".info-contacts").shouldHave(text("info@pflb.ru"));
-        //проверка доп. информацийй и услуг
+        step("Проверка контактной информации", () -> {
+            clients.checkContactInformation();
+        });
 
-        $(".info-contacts").shouldHave(text("Узнайте больше"));
-        $(".info-contacts").find(byText("услуги")).click();
+        step("Проверка доп. информацийй и услуг", () -> {
+            clients.checkAddInformationAndServices();
+        });
+
         Selenide.back();
-        $(".info-contacts").shouldHave(text("Получите предложение"));
-        $(".info-contacts").find(byText("Заказать услугу")).click();
 
-        // заказать услугу
-        $(".premium-modal-box-modal-title").shouldHave(text("Свяжитесь с нами"));
+        step("Получить предложение", () -> {
+            clients.orderService();
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Имя"));
-        $("[name=your-name]").click();
-        $("[name=your-name]").setValue("граф");
+            step("Имя", () -> {
+                orderService.writeName();
+            });
+            step("Фамилия", () -> {
+                orderService.writeSurname();
+            });
+            step("Email", () -> {
+                orderService.writeEmail();
+            });
+            step("Телефон", () -> {
+                orderService.writeTelephone();
+            });
+            step("Название компании", () -> {
+                orderService.writeCompany();
+            });
+            step("Сообщение", () -> {
+                orderService.writeMessage();
+            });
+            step("Навести курсор на кнопку отправить", () -> {
+                orderService.hoverToSend();
+            });
+            step("Закрыть окно заказа услуг", () -> {
+                orderService.closeContainer();
+            });
 
-        $(".premium-modal-box-modal-body").shouldHave(text("Фамилия"));
-        $("[name=your-surname]").click();
-        $("[name=your-surname]").setValue("краснов");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Email"));
-        $("[name=your-email]").click();
-        $("[name=your-email]").setValue("hghghg@mail.ru");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Телефон"));
-        $("[name=your-tel]").click();
-        $("[name=your-tel]").setValue("7777777777");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Компания"));
-        $("[name=your-organization]").click();
-        $("[name=your-organization]").setValue("FunctionalLab");
-
-        $(".premium-modal-box-modal-body").shouldHave(text("Сообщение"));
-        $("[name=your-message]").click();
-        $("[name=your-message]").setValue("FunctionalTest");
-
-        $("[value=Отправить]").hover();
-
-        $(".premium-modal-box-close-button-container").click();
+        });
 
         Selenide.back();
 
@@ -223,49 +203,133 @@ public class FunctionalTesting extends TastBase {
     void whatWeAreTesting() {  //что мы тестируем
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
 
-        $(".systems").hover();
-        $(".systems").shouldHave(text("ЧТО МЫ ТЕСТИРУЕМ"));
 
-        $(byAttribute("title", "Тестирование сайтов")).click();
+        step("Название раздела ЧТО МЫ ТЕСТИРУЕМ", () -> {
+            whatWeTesting.sectionWhatWeAreTesting();
+        });
+        step("Переход на раздел Тестирование сайтов", () -> {
+            whatWeTesting.testingWebsite();
+        });
         switchTo().window(0);
 
-        $(byAttribute("title", "Тестирование IT-систем")).click();
+        step("Переход на раздел Тестирование IT-систем", () -> {
+            whatWeTesting.testingITSystems();
+        });
 
+        step("Переход на раздел ИГРЫ", () -> {
+            whatWeTesting.testingGames();
 
-        $(".systems").find(byText("ИГРЫ")).click();
-        $(".premium-modal-box-close-button-container").click();
-        //заполнение данных
+            step("Имя", () -> {
+                orderService.writeName();
+            });
+            step("Фамилия", () -> {
+                orderService.writeSurname();
+            });
+            step("Email", () -> {
+                orderService.writeEmail();
+            });
+            step("Телефон", () -> {
+                orderService.writeTelephone();
+            });
+            step("Название компании", () -> {
+                orderService.writeCompany();
+            });
+            step("Сообщение", () -> {
+                orderService.writeMessage();
+            });
+            step("Навести курсор на кнопку отправить", () -> {
+                orderService.hoverToSend();
+            });
+            step("Закрыть окно заказа услуг", () -> {
+                orderService.closeContainer();
+            });
+        });
 
-        $(byAttribute("title", "Тестирование мобильных приложений")).click();
+        step("Переход на раздел Тестирование мобильных приложений", () -> {
+            whatWeTesting.testingMobileApps();
+        });
         Selenide.back();
 
 
-        $(".systems").find(byText("УМНЫЕ УСТРОЙСТВА, VR, AR")).click();
-        $(".premium-modal-box-close-button-container").click();
-        //заполнение данных
+        step("Переход на раздел УМНЫЕ УСТРОЙСТВА, VR, AR", () -> {
+            whatWeTesting.testingDevices();
 
-        // кнопка заказать услугу
+            step("Имя", () -> {
+                orderService.writeName();
+            });
+            step("Фамилия", () -> {
+                orderService.writeSurname();
+            });
+            step("Email", () -> {
+                orderService.writeEmail();
+            });
+            step("Телефон", () -> {
+                orderService.writeTelephone();
+            });
+            step("Название компании", () -> {
+                orderService.writeCompany();
+            });
+            step("Сообщение", () -> {
+                orderService.writeMessage();
+            });
+            step("Навести курсор на кнопку отправить", () -> {
+                orderService.hoverToSend();
+            });
+            step("Закрыть окно заказа услуг", () -> {
+                orderService.closeContainer();
+            });
+        });
 
-        sleep(5000);
+        step("Заказать услугу", () -> {
+            whatWeTesting.orderServiceForTesting();
 
+            step("Имя", () -> {
+                orderService.writeName();
+            });
+            step("Фамилия", () -> {
+                orderService.writeSurname();
+            });
+            step("Email", () -> {
+                orderService.writeEmail();
+            });
+            step("Телефон", () -> {
+                orderService.writeTelephone();
+            });
+            step("Название компании", () -> {
+                orderService.writeCompany();
+            });
+            step("Сообщение", () -> {
+                orderService.writeMessage();
+            });
+            step("Навести курсор на кнопку отправить", () -> {
+                orderService.hoverToSend();
+            });
+            step("Закрыть окно заказа услуг", () -> {
+                orderService.closeContainer();
+            });
+        });
+
+        sleep(2000);
 
     }
-
 
     @Test
     void threeReasonsToWorkWithUs() { // три причины работать с нами
 
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
 
-        $(".three_reason").hover();
-        $(".three_reason").shouldHave(text("3 ПРИЧИНЫ РАБОТАТЬ С НАМИ"));
-
-        $(".three_reason").shouldHave(text("МЫ СПЕЦИАЛИЗИРУЕМСЯ НА ТЕСТИРОВАНИИ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ"));
-
-        $(".three_reason").shouldHave(text("ПРЕДМЕТНЫЕ ЗНАНИЯ В РАЗЛИЧНЫХ ОТРАСЛЯХ: БАНКИ, РИТЕЙЛ, ТЕЛЕКОМ"));
-
-        $(".three_reason").shouldHave(text("СОВРЕМЕННЫЕ И КЛАССИЧЕСКИЕ ПОДХОДЫ"));
-
+        step("Название раздела 3 ПРИЧИНЫ РАБОТАТЬ С НАМИ", () -> {
+            threeReasons.sectionThreeReasonsToWorkWithUs();
+        });
+        step("Первая причина", () -> {
+            threeReasons.firstReason();
+        });
+        step("Вторая причина", () -> {
+            threeReasons.secondReason();
+        });
+        step("Третья причина", () -> {
+            threeReasons.thirdReason();
+        });
     }
 
     @Test
@@ -381,26 +445,58 @@ public class FunctionalTesting extends TastBase {
     void howWeAreWorking() { // как мы работаем
 
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
-        $(".how-we-work").hover();
-        $(".how-we-work").shouldHave(text("КАК МЫ РАБОТАЕМ"));
 
-        $(".how-we-work").shouldHave(text("Анализ программного обеспечения и документации (BRD, FSD, User stories)"));
-        $(".how-we-work").find(byText("01.")).click();
-        $(".information").shouldHave(text("Анализ программного обеспечения и документации (BRD, FSD, User stories)"));
+        step("Название раздела КАК МЫ РАБОТАЕМ", () -> {
+            HowWorking.sectionHowWeAreWorking();
+        });
 
-        $(".how-we-work").shouldHave(text("Разработка тестовой модели"));
-        $(".how-we-work").find(byText("02.")).click();
-        $(".information").shouldHave(text("Разработка тестовой модели"));
+        step("Шаг первый Анализ программного обеспечения и документации", () -> {
+            HowWorking.stepFirst();
+        });
 
-        $(".how-we-work").shouldHave(text("Проведение тестирования"));
-        $(".how-we-work").find(byText("03.")).click();
-        $(".information").shouldHave(text("Проведение тестирования"));
+        step("Шаг второй Разработка тестовой модели", () -> {
+            HowWorking.stepSecond();
+        });
 
-        $(".how-we-work").shouldHave(text("Подготовка отчета"));
-        $(".how-we-work").find(byText("04.")).click();
-        $(".information").shouldHave(text("Подготовка отчета"));
+        step("Шаг третий Проведение тестирования", () -> {
+            HowWorking.stepThird();
+        });
 
-        // кнопка заказать услугу
+        step("Шаг четвертый Подготовка отчета", () -> {
+            HowWorking.stepFourth();
+        });
+
+        step("Нажать на кнопку Заказать услугу", () -> {
+            HowWorking.orderServiceForWorking();
+
+            step("Имя", () -> {
+                orderService.writeName();
+            });
+            step("Фамилия", () -> {
+                orderService.writeSurname();
+            });
+            step("Email", () -> {
+                orderService.writeEmail();
+            });
+            step("Телефон", () -> {
+                orderService.writeTelephone();
+            });
+            step("Название компании", () -> {
+                orderService.writeCompany();
+            });
+            step("Сообщение", () -> {
+                orderService.writeMessage();
+            });
+            step("Навести курсор на кнопку отправить", () -> {
+                orderService.hoverToSend();
+            });
+            step("Закрыть окно заказа услуг", () -> {
+                orderService.closeContainer();
+            });
+
+        });
+
+        sleep(3000);
 
     }
 
@@ -408,22 +504,47 @@ public class FunctionalTesting extends TastBase {
     void industries() { // отрасли
 
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
-        $(".industrys").hover();
-        $(".industrys").shouldHave(text("ОТРАСЛИ"));
 
-        //название отраслей
-        $(".industrys").shouldHave(text("Банковский сектор и Финансы"));
-        $(".industrys").shouldHave(text("Госструктуры"));
-        $(".industrys").shouldHave(text("Ритейл"));
-        $(".industrys").shouldHave(text("Телеком"));
-        $(".industrys").shouldHave(text("Медицина"));
-        $(".industrys").shouldHave(text("Интернет"));
-        $(".industrys").shouldHave(text("Промышленность"));
-        $(".industrys").shouldHave(text("Развлечения"));
-        $(".industrys").shouldHave(text("Страхование"));
-        $(".industrys").shouldHave(text("Топливно - энергетическая отрасль"));
-        $(".industrys").shouldHave(text("Транспорт, логистика"));
+        step("Название раздела ОТРАСЛИ", () -> {
+            industries.sectionIndustries();
+        });
 
+        step("Название отраслей", () -> {
+
+            step("Банковский сектор и Финансы", () -> {
+                industries.banksAndFinance();
+            });
+            step("Госструктуры", () -> {
+                industries.stateStructures();
+            });
+            step("Ритейл", () -> {
+                industries.retail();
+            });
+            step("Телеком", () -> {
+                industries.telecom();
+            });
+            step("Медицина", () -> {
+                industries.medicine();
+            });
+            step("Интернет", () -> {
+                industries.internet();
+            });
+            step("Интернет", () -> {
+                industries.industry();
+            });
+            step("Развлечения", () -> {
+                industries.entertainment();
+            });
+            step("Страхование", () -> {
+                industries.insurance();
+            });
+            step("Топливно - энергетическая отрасль", () -> {
+                industries.fuelAndEnergyIndustry();
+            });
+            step("Транспорт, логистика", () -> {
+                industries.transportLogistics();
+            });
+        });
     }
 
     @Test
@@ -432,7 +553,6 @@ public class FunctionalTesting extends TastBase {
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
         $("#projects-examples").hover();
         $("#projects-examples").shouldHave(text("ПРИМЕРЫ ПРОЕКТОВ"));
-
 
 
         $("#projects-examples").$("#projects-carousel").shouldHave(text("Посмотреть всех клиентов"));
@@ -468,7 +588,7 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    void clientsAboutUs () {
+    void clientsAboutUs() {
 
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
         $(".clients-about").hover();
@@ -601,7 +721,6 @@ public class FunctionalTesting extends TastBase {
         $(".ekko-lightbox").pressEscape();
 
         sleep(1000);
-
 
     }
 
