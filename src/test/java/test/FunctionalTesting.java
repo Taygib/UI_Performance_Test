@@ -336,91 +336,221 @@ public class FunctionalTesting extends TastBase {
     void serviceCatalog() { // каталог услуг
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
 
-        $(".catalog").hover();
-        $(".catalog").shouldHave(text("КАТАЛОГ УСЛУГ"));
+        step("Название раздела КАТАЛОГ УСЛУГ", () -> {
+            catalog.sectionServiceCatalog();
+        });
 
-        ////////-----------------////////----------------------////////-----------------////////-----------////////----
-        //закрыть
-        $(".catalog").find(byText("СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ")).click();
+        step("СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
 
-        //открыть
-        $(".catalog").find(byText("СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ")).click();
+            step("Свернуть раздел СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
+                catalog.closeTestingOfBusinessProcess();
+            });
 
-        //проверка
-        $(".catalog").shouldHave(text("Тестирование, позволяющее проверить целостный бизнес-процесс," +
-                " включающий прохождение информационных потоков через ряд интегрированных между собой систем."));
+            step("Открыть раздел СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
+                catalog.openTestingOfBusinessProcess();
+            });
 
-        //нажать на кнопку Заказать услугу
-        $(byAttribute("title", "Заказать услугу")).click();
+            step("Проверить текст в разделе СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
+                catalog.checkTextTestingOfBusinessProcess();
+            });
+            step("Заказать услугу в разделе СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
+                step("Заказать услугу", () -> {
+                    catalog.clickOnOrderService();
+                });
+                step("Имя", () -> {
+                    orderService.writeName();
+                });
+                step("Фамилия", () -> {
+                    orderService.writeSurname();
+                });
+                step("Email", () -> {
+                    orderService.writeEmail();
+                });
+                step("Телефон", () -> {
+                    orderService.writeTelephone();
+                });
+                step("Название компании", () -> {
+                    orderService.writeCompany();
+                });
+                step("Сообщение", () -> {
+                    orderService.writeMessage();
+                });
+                step("Навести курсор на кнопку отправить", () -> {
+                    orderService.hoverToSend();
+                });
+                step("Закрыть окно заказа услуг", () -> {
+                    orderService.closeContainer();
+                });
+            });
+        });
 
-        //заполниьт бланк
-        $(".premium-modal-box-close-button-container").click();
+        step("СИСТЕМНОЕ ТЕСТИРОВАНИЕ", () -> {
+            step("Открыть раздел СИСТЕМНОЕ ТЕСТИРОВАНИЕ", () -> {
+                catalog.openSystemTesting();
+            });
+            step("Проверить текст в разделе СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
+                catalog.checkTextSystemTesting();
+            });
+            step("Заказать услугу в разделе СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
+                step("Заказать услугу", () -> {
+                    catalog.clickOnOrderService();
+                });
+                step("Имя", () -> {
+                    orderService.writeName();
+                });
+                step("Фамилия", () -> {
+                    orderService.writeSurname();
+                });
+                step("Email", () -> {
+                    orderService.writeEmail();
+                });
+                step("Телефон", () -> {
+                    orderService.writeTelephone();
+                });
+                step("Название компании", () -> {
+                    orderService.writeCompany();
+                });
+                step("Сообщение", () -> {
+                    orderService.writeMessage();
+                });
+                step("Навести курсор на кнопку отправить", () -> {
+                    orderService.hoverToSend();
+                });
+                step("Закрыть окно заказа услуг", () -> {
+                    orderService.closeContainer();
+                });
+            });
+            step("Свернуть раздел СИСТЕМНОЕ ТЕСТИРОВАНИЕ", () -> {
+                catalog.closeSystemTesting();
+            });
+        });
 
-        ////////-----------------////////----------------------////////-----------------////////-----------////////----
-        //открыть СИСТЕМНОЕ ТЕСТИРОВАНИЕ
-        $(".catalog").find(byText("СИСТЕМНОЕ ТЕСТИРОВАНИЕ")).click();
-        //проверка
-        $(".catalog").shouldHave(text("Процесс тестирования системы в целом с целью проверки того," +
-                " что она соответствует установленным требованиям."));
+        step("ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
+            step("Открыть раздел ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
+                catalog.openIntegrationTesting();
+            });
+            step("Проверить текст в разделе ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
+                catalog.checkTextIntegrationTesting();
+            });
+            step("Заказать услугу в разделе ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
+                step("Заказать услугу", () -> {
+                    catalog.clickOnOrderService();
+                });
+                step("Имя", () -> {
+                    orderService.writeName();
+                });
+                step("Фамилия", () -> {
+                    orderService.writeSurname();
+                });
+                step("Email", () -> {
+                    orderService.writeEmail();
+                });
+                step("Телефон", () -> {
+                    orderService.writeTelephone();
+                });
+                step("Название компании", () -> {
+                    orderService.writeCompany();
+                });
+                step("Сообщение", () -> {
+                    orderService.writeMessage();
+                });
+                step("Навести курсор на кнопку отправить", () -> {
+                    orderService.hoverToSend();
+                });
+                step("Закрыть окно заказа услуг", () -> {
+                    orderService.closeContainer();
+                });
+            });
+            step("Свернуть раздел ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
+                catalog.closeIntegrationTesting();
+            });
 
-        //нажать на кнопку Заказать услугу
-        $(byAttribute("title", "Заказать услугу")).click();
+        });
 
-        //заполниьт бланк
-        $(".premium-modal-box-close-button-container").click();
+        step("ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+            step("Открыть раздел ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+                catalog.openUserTesting();
+            });
+            step("Проверить текст в разделе ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+                catalog.checkTextUserTesting();
+            });
+            step("Заказать услугу в разделе ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+                step("Заказать услугу", () -> {
+                    catalog.clickOnOrderService();
+                });
+                step("Имя", () -> {
+                    orderService.writeName();
+                });
+                step("Фамилия", () -> {
+                    orderService.writeSurname();
+                });
+                step("Email", () -> {
+                    orderService.writeEmail();
+                });
+                step("Телефон", () -> {
+                    orderService.writeTelephone();
+                });
+                step("Название компании", () -> {
+                    orderService.writeCompany();
+                });
+                step("Сообщение", () -> {
+                    orderService.writeMessage();
+                });
+                step("Навести курсор на кнопку отправить", () -> {
+                    orderService.hoverToSend();
+                });
+                step("Закрыть окно заказа услуг", () -> {
+                    orderService.closeContainer();
+                });
+            });
+            step("Свернуть раздел ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+                catalog.closeUserTesting();
+            });
+        });
 
-        //закрыть СИСТЕМНОЕ ТЕСТИРОВАНИЕ
-        $(".catalog").find(byText("СИСТЕМНОЕ ТЕСТИРОВАНИЕ")).click();
+        step("АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ", () -> {
+            step("Открыть раздел АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ", () -> {
+                catalog.openAuditAndOptimizationOfTestModel();
+            });
+            step("Проверить текст в разделе АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ", () -> {
+                catalog.checkTextAuditAndOptimizationOfTestModel();
+            });
+            step("Заказать услугу в разделе ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+                step("Заказать услугу", () -> {
+                    catalog.clickOnOrderService();
+                });
+                step("Имя", () -> {
+                    orderService.writeName();
+                });
+                step("Фамилия", () -> {
+                    orderService.writeSurname();
+                });
+                step("Email", () -> {
+                    orderService.writeEmail();
+                });
+                step("Телефон", () -> {
+                    orderService.writeTelephone();
+                });
+                step("Название компании", () -> {
+                    orderService.writeCompany();
+                });
+                step("Сообщение", () -> {
+                    orderService.writeMessage();
+                });
+                step("Навести курсор на кнопку отправить", () -> {
+                    orderService.hoverToSend();
+                });
+                step("Закрыть окно заказа услуг", () -> {
+                    orderService.closeContainer();
+                });
+            });
+            step("Свернуть раздел ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+                catalog.closeAuditAndOptimizationOfTestModel();
+            });
+        });
 
-        ////////-----------------////////----------------------////////-----------------////////-----------////////----
-        //открыть ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ
-        $(".catalog").find(byText("ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ")).click();
-        //проверка
-        $(".catalog").shouldHave(text("Тестирование, выполняемое для обнаружения дефектов в интерфейсах " +
-                "и во взаимодействии между интегрированными компонентами или системами."));
 
-        //нажать на кнопку Заказать услугу
-        $(byAttribute("title", "Заказать услугу")).click();
-
-        //заполниьт бланк
-        $(".premium-modal-box-close-button-container").click();
-
-        //закрыть ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ
-        $(".catalog").find(byText("СИСТЕМНОЕ ТЕСТИРОВАНИЕ")).click();
-        ////////-----------------////////----------------------////////-----------------////////-----------////////----
-
-        //открыть ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)
-        $(".catalog").find(byText("ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)")).click();
-        //проверка
-        $(".catalog").shouldHave(text("Приемочное пользовательское тестирование " +
-                "(UAT — User Acceptance Testing) – тестирование, которое проводится конечными пользователями системы " +
-                "с целью принятия решения о внедрении."));
-
-        //нажать на кнопку Заказать услугу
-        $(byAttribute("title", "Заказать услугу")).click();
-
-        //заполниьт бланк и закрыть
-        $(".premium-modal-box-close-button-container").click();
-
-        //закрыть ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)
-        $(".catalog").find(byText("ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)")).click();
-        ////////-----------------////////----------------------////////-----------------////////-----------////////----
-
-        //открыть АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ
-        $(".catalog").find(byText("АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ")).click();
-        //проверка
-        $(".catalog").shouldHave(text("Проведение независимой оценки тестовой модели на предмет" +
-                " соответствия стандартам, а также предоставление рекомендаций для повышения качества данной модели."));
-
-        //нажать на кнопку Заказать услугу
-        $(byAttribute("title", "Заказать услугу")).click();
-
-        //заполниьт бланк и закрыть
-        $(".premium-modal-box-close-button-container").click();
-
-        //закрыть АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ
-        $(".catalog").find(byText("АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ")).click();
-        ////////-----------------////////----------------------////////-----------------////////-----------////////----
+    ////////-----------------////////----------------------////////-----------------////////-----------////////----
 
         //открыть ТРЕНИНГИ И ОБУЧЕНИЕ
         $(".catalog").find(byText("ТРЕНИНГИ И ОБУЧЕНИЕ")).click();
@@ -437,7 +567,7 @@ public class FunctionalTesting extends TastBase {
         $(".catalog").find(byText("ТРЕНИНГИ И ОБУЧЕНИЕ")).click();
         ////////-----------------////////----------------------////////-----------------////////-----------////////----
 
-        sleep(3000);
+        sleep(2000);
 
     }
 
@@ -551,36 +681,48 @@ public class FunctionalTesting extends TastBase {
     void examplesOfProjects() { // примеры проектов
 
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
-        $("#projects-examples").hover();
-        $("#projects-examples").shouldHave(text("ПРИМЕРЫ ПРОЕКТОВ"));
 
 
-        $("#projects-examples").$("#projects-carousel").shouldHave(text("Посмотреть всех клиентов"));
-        $("#projects-examples").$(".carousel-control-prev").click();
+        step("Название раздела ПРИМЕРЫ ПРОЕКТОВ", () -> {
+            examples.sectionExamplesOfProjects();
+        });
 
-        $("#projects-examples").$("#projects-carousel").find(byText("Посмотреть всех клиентов")).click();
+        step("Проверка наличие надписи Посмотреть всех клиентов", () -> {
+            examples.viewAllClients();
+        });
+
+        step("Кликнуть на предыдущий слайд", () -> {
+            examples.clickPrevSlide();
+        });
+
+        step("Переход ко всем клиентам", () -> {
+            examples.clickOnViewAllClients();
+        });
         Selenide.back();
 
+        step("Кликнуть на следующий слайд", () -> {
+            examples.clickNextSlide();
+        });
 
-        $("#projects-examples").$("#projects-carousel").shouldHave(text("Посмотреть всех клиентов"));
-        $("#projects-examples").$(".carousel-control-next").click();
-
-        $("#projects-examples").$("#projects-carousel").find(byText("Посмотреть всех клиентов")).click();
+        step("Переход ко всем клиентам", () -> {
+            examples.clickOnViewAllClients();
+        });
         Selenide.back();
 
-
-        $(".ee-carousel-indicators").hover();
-        $("#projects-examples").$("#projects-carousel").shouldHave(text("Посмотреть всех клиентов"));
-        $(byAttribute("data-slide-to", "0")).click();
-
-        $("#projects-examples").$("#projects-carousel").find(byText("Посмотреть всех клиентов")).click();
+        step("Клик по левому индикатору", () -> {
+            examples.clickOnLeftIndicator();
+        });
+        step("Переход ко всем клиентам", () -> {
+            examples.clickOnViewAllClients();
+        });
         Selenide.back();
 
-        $("#projects-examples").$("#projects-carousel").shouldHave(text("Посмотреть всех клиентов"));
-        $(byAttribute("data-slide-to", "1")).click();
-
-
-        $("#projects-examples").$("#projects-carousel").find(byText("Посмотреть всех клиентов")).click();
+        step("Клик по правому индикатору", () -> {
+            examples.clickOnRightIndicator();
+        });
+        step("Переход ко всем клиентам", () -> {
+            examples.clickOnViewAllClients();
+        });
         Selenide.back();
 
         sleep(500);
@@ -591,137 +733,122 @@ public class FunctionalTesting extends TastBase {
     void clientsAboutUs() {
 
         open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
-        $(".clients-about").hover();
-        $(".clients-about").shouldHave(text("КЛИЕНТЫ О НАС"));
 
 
-        $(".clients-about").$(byAttribute("title", "X5 Retail Group pdf")).click();
-        //закрыть
-        $(".eicon-close").click();
+        step("Название раздела КЛИЕНТЫ О НАС", () -> {
+            clientsAboutUs.sectionClientsAboutUs();
+        });
 
-        //sleep(1000);
+        step("Открыть X5 Retail Group", () -> {
+            clientsAboutUs.clickOnX5RetailGroup();
 
-        $(".ekko-lightbox-container").find(byText("❯")).hover();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
+            step("Закрыть клиента", () -> {
+                clientsAboutUs.close();
+            });
+            step("Пролистать в право пять раз", () -> {
+                clientsAboutUs.clickRightFiveTimes();
+            });
+            step("Пролистать в лево пять раз", () -> {
+                clientsAboutUs.clickLeftFiveTimes();
+            });
 
-        $(".ekko-lightbox-container").find(byText("❮")).hover();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
+        });
 
-        $(".ekko-lightbox").pressEscape();
+        step("Закрыть ", () -> {
+            clientsAboutUs.closeClient();
+        });
 
+        step("Открыть ДИТ Омск", () -> {
+            clientsAboutUs.clickOnDitOmsk();
 
-        $(".clients-about").$(byAttribute("title", "ДИТ Омск pdf")).click();
-        //закрыть
-        $(".eicon-close").click();
+            step("Закрыть клиента", () -> {
+                clientsAboutUs.close();
+            });
+            step("Пролистать в право пять раз", () -> {
+                clientsAboutUs.clickRightFiveTimes();
+            });
+            step("Пролистать в лево пять раз", () -> {
+                clientsAboutUs.clickLeftFiveTimes();
+            });
+        });
 
-        $(".ekko-lightbox-container").find(byText("❯")).hover();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
+        step("Закрыть", () -> {
+            clientsAboutUs.closeClient();
+        });
 
-        $(".ekko-lightbox-container").find(byText("❮")).hover();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
+        step("Открыть Рольф", () -> {
+            clientsAboutUs.clickOnRolf();
 
-        $(".ekko-lightbox").pressEscape();
+            step("Закрыть клиента", () -> {
+                clientsAboutUs.close();
+            });
+            step("Пролистать в право пять раз", () -> {
+                clientsAboutUs.clickRightFiveTimes();
+            });
+            step("Пролистать в лево пять раз", () -> {
+                clientsAboutUs.clickLeftFiveTimes();
+            });
+        });
 
+        step("Закрыть", () -> {
+            clientsAboutUs.closeClient();
+        });
 
-        $(".clients-about").$(byAttribute("title", "Рольф pdf")).click();
-        //закрыть
-        $(".eicon-close").click();
+        step("Открыть Ростелеком", () -> {
+            clientsAboutUs.clickOnRostelekom();
 
-        $(".ekko-lightbox-container").find(byText("❯")).hover();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
+            step("Закрыть клиента", () -> {
+                clientsAboutUs.close();
+            });
+            step("Пролистать в право пять раз", () -> {
+                clientsAboutUs.clickRightFiveTimes();
+            });
+            step("Пролистать в лево пять раз", () -> {
+                clientsAboutUs.clickLeftFiveTimes();
+            });
+        });
 
-        $(".ekko-lightbox-container").find(byText("❮")).hover();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
+        step("Закрыть", () -> {
+            clientsAboutUs.closeClient();
+        });
 
-        $(".ekko-lightbox").pressEscape();
+        step("Открыть ВТБ24", () -> {
+            clientsAboutUs.clickOnVTB24();
 
-        $(".clients-about").$(byAttribute("title", "Ростелеком pdf")).click();
-        //закрыть
-        $(".eicon-close").click();
+            step("Закрыть клиента", () -> {
+                clientsAboutUs.close();
+            });
+            step("Пролистать в право пять раз", () -> {
+                clientsAboutUs.clickRightFiveTimes();
+            });
+            step("Пролистать в лево пять раз", () -> {
+                clientsAboutUs.clickLeftFiveTimes();
+            });
+        });
 
-        $(".ekko-lightbox-container").find(byText("❯")).hover();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
+        step("Закрыть", () -> {
+            clientsAboutUs.closeClient();
+        });
 
-        $(".ekko-lightbox-container").find(byText("❮")).hover();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
+        step("Открыть Witology", () -> {
+            clientsAboutUs.clickOnWitology();
 
-        $(".ekko-lightbox").pressEscape();
+            step("Закрыть клиента", () -> {
+                clientsAboutUs.close();
+            });
+            step("Пролистать в право пять раз", () -> {
+                clientsAboutUs.clickRightFiveTimes();
+            });
+            step("Пролистать в лево пять раз", () -> {
+                clientsAboutUs.clickLeftFiveTimes();
+            });
+        });
 
-
-        $(".clients-about").$(byAttribute("title", "ВТБ24 pdf")).click();
-        //закрыть
-        $(".eicon-close").click();
-
-        $(".ekko-lightbox-container").find(byText("❯")).hover();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-
-        $(".ekko-lightbox-container").find(byText("❮")).hover();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-
-        $(".ekko-lightbox").pressEscape();
-
-        $(".clients-about").$(byAttribute("title", "Witology pdf")).click();
-        //закрыть
-        $(".eicon-close").click();
-
-        $(".ekko-lightbox-container").find(byText("❯")).hover();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-
-        $(".ekko-lightbox-container").find(byText("❮")).hover();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-
-        $(".ekko-lightbox").pressEscape();
+        step("Закрыть", () -> {
+            clientsAboutUs.closeClient();
+        });
 
         sleep(1000);
 
     }
-
 }
