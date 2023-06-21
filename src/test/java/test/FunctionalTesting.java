@@ -1,63 +1,107 @@
 package test;
 
 import com.codeborne.selenide.Selenide;
+import data.ContainMenu;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byAttribute;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 public class FunctionalTesting extends TastBase {
 
-    @Test
+    String firstName = faker.name().firstName();
+    String lastName = faker.name().lastName();
+    String email = faker.internet().emailAddress();
+    String company = faker.company().name();
+
+    static Stream<Arguments> menuContain() {
+        return Stream.of(
+                Arguments.of(ContainMenu.SERVICESANDPRODUCTS, List.of(
+                        "Тестирование", "Консалтинг", "Продукты")),
+                Arguments.of(ContainMenu.VACANCIES, List.of(
+                        "Карьера в Перфоманс Лаб", "Почему к нам приходят", "Развитие в компании"))
+        );
+    }
+
+    @MethodSource
+    @ParameterizedTest
     @Tag("Search")
-    void menuContain() { // параметризованный тест
+    @Owner("Taygib")
+    @Severity(SeverityLevel.BLOCKER)
+    void menuContain(ContainMenu menuSection, List<String> expectedButtons) {
 
-
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
+        step("Название загаловков в подменю", () -> {
+        menuContainPage.parameterMenu(menuSection.toString(), expectedButtons);
+        });
     }
 
     @Test
-    void firstThreeButtonsOrderService() { // заказать услугу кнопка
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.BLOCKER)
+    void firstThreeButtonsOrderService() {
 
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
-
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
         step("Заказать услугу в правом верхнем углу", () -> {
             orderService.clickOnOrderServiceInTheUpperRightCorner();
             orderService.titleСheck();
 
             step("Имя", () -> {
-                orderService.writeName();
+                order.writeName(firstName);
             });
+
             step("Фамилия", () -> {
-                orderService.writeSurname();
+                order.writeSurname(lastName);
             });
+
             step("Email", () -> {
-                orderService.writeEmail();
+                order.writeEmail(email);
             });
+
             step("Телефон", () -> {
-                orderService.writeTelephone();
+                order.writeTelephone("7777777777");
             });
+
             step("Название компании", () -> {
-                orderService.writeCompany();
+                order.writeCompany(company);
             });
+
             step("Сообщение", () -> {
-                orderService.writeMessage();
+                order.writeMessage("FunctionalTest");
             });
+
             step("Навести курсор на кнопку отправить", () -> {
-                orderService.hoverToSend();
+                order.hoverToSend();
             });
+
             step("Закрыть окно заказа услуг", () -> {
-                orderService.closeContainer();
+                order.closeContainer();
             });
         });
 
         step(" под названием Функциональное тестирование нажать кнопку Заказать услугу", () -> {
 
-            $(".col-12").shouldHave(text("Функциональное тестирование"));
-            $(".col-12").shouldHave(text("Сделайте шаг навстречу качеству"));
+            step("Проверка на наличие текста", () -> {
+                $(".col-12").shouldHave(text("Функциональное тестирование"));
+                $(".col-12").shouldHave(text("Сделайте шаг навстречу качеству"));
+            });
+
 
             orderService.clickOnOrderServiceButtonCalledFunctionalTesting();
             orderService.titleСheck();
@@ -67,32 +111,39 @@ public class FunctionalTesting extends TastBase {
             });
 
             step("Имя", () -> {
-                orderService.writeName();
+                order.writeName(firstName);
             });
+
             step("Фамилия", () -> {
-                orderService.writeSurname();
+                order.writeSurname(lastName);
             });
+
             step("Email", () -> {
-                orderService.writeEmail();
+                order.writeEmail(email);
             });
+
             step("Телефон", () -> {
-                orderService.writeTelephone();
+                order.writeTelephone("7777777777");
             });
+
             step("Название компании", () -> {
-                orderService.writeCompany();
+                order.writeCompany(company);
             });
+
             step("Сообщение", () -> {
-                orderService.writeMessage();
+                order.writeMessage("FunctionalTest");
             });
+
             step("Навести курсор на кнопку отправить", () -> {
-                orderService.hoverToSend();
+                order.hoverToSend();
             });
+
             step("Закрыть окно заказа услуг", () -> {
-                orderService.closeContainer();
+                order.closeContainer();
             });
         });
 
-        step("Заказать услугу под названием Перфоманс лаб - это", () -> {
+        step("Под названием =Перфоманс лаб - это= заказать услугу", () -> {
 
             $(".inf").shouldHave(text("перфоманс лаб - это"));
 
@@ -104,38 +155,48 @@ public class FunctionalTesting extends TastBase {
             });
 
             step("Имя", () -> {
-                orderService.writeName();
+                order.writeName(firstName);
             });
+
             step("Фамилия", () -> {
-                orderService.writeSurname();
+                order.writeSurname(lastName);
             });
+
             step("Email", () -> {
-                orderService.writeEmail();
+                order.writeEmail(email);
             });
+
             step("Телефон", () -> {
-                orderService.writeTelephone();
+                order.writeTelephone("7777777777");
             });
+
             step("Название компании", () -> {
-                orderService.writeCompany();
+                order.writeCompany(company);
             });
+
             step("Сообщение", () -> {
-                orderService.writeMessage();
+                order.writeMessage("FunctionalTest");
             });
+
             step("Навести курсор на кнопку отправить", () -> {
-                orderService.hoverToSend();
+                order.hoverToSend();
             });
+
             step("Закрыть окно заказа услуг", () -> {
-                orderService.closeContainer();
+                order.closeContainer();
             });
         });
-
-        sleep(2000);
     }
 
     @Test
-    void ourClients() {  //наши клиенты
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.BLOCKER)
+    void ourClients() {
 
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
 
         step("Название раздела НАШИ КЛИЕНТЫ", () -> {
             clients.sectionOurClients();
@@ -148,6 +209,7 @@ public class FunctionalTesting extends TastBase {
         step("Как помогает Перфоманс Лаб", () -> {
             clients.howPerformanceLabHelp();
         });
+
         step("Переход в раздел кейсы", () -> {
             clients.clickOnReadCases();
         });
@@ -168,48 +230,58 @@ public class FunctionalTesting extends TastBase {
             clients.orderService();
 
             step("Имя", () -> {
-                orderService.writeName();
-            });
-            step("Фамилия", () -> {
-                orderService.writeSurname();
-            });
-            step("Email", () -> {
-                orderService.writeEmail();
-            });
-            step("Телефон", () -> {
-                orderService.writeTelephone();
-            });
-            step("Название компании", () -> {
-                orderService.writeCompany();
-            });
-            step("Сообщение", () -> {
-                orderService.writeMessage();
-            });
-            step("Навести курсор на кнопку отправить", () -> {
-                orderService.hoverToSend();
-            });
-            step("Закрыть окно заказа услуг", () -> {
-                orderService.closeContainer();
+                order.writeName(firstName);
             });
 
+            step("Фамилия", () -> {
+                order.writeSurname(lastName);
+            });
+
+            step("Email", () -> {
+                order.writeEmail(email);
+            });
+
+            step("Телефон", () -> {
+                order.writeTelephone("7777777777");
+            });
+
+            step("Название компании", () -> {
+                order.writeCompany(company);
+            });
+
+            step("Сообщение", () -> {
+                order.writeMessage("FunctionalTest");
+            });
+
+            step("Навести курсор на кнопку отправить", () -> {
+                order.hoverToSend();
+            });
+
+            step("Закрыть окно заказа услуг", () -> {
+                order.closeContainer();
+            });
         });
 
         Selenide.back();
-
-        sleep(4000);
     }
 
     @Test
-    void whatWeAreTesting() {  //что мы тестируем
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
-
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.BLOCKER)
+    void whatWeAreTesting() {
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
 
         step("Название раздела ЧТО МЫ ТЕСТИРУЕМ", () -> {
             whatWeTesting.sectionWhatWeAreTesting();
         });
+
         step("Переход на раздел Тестирование сайтов", () -> {
             whatWeTesting.testingWebsite();
         });
+
         switchTo().window(0);
 
         step("Переход на раздел Тестирование IT-систем", () -> {
@@ -220,128 +292,156 @@ public class FunctionalTesting extends TastBase {
             whatWeTesting.testingGames();
 
             step("Имя", () -> {
-                orderService.writeName();
+                order.writeName(firstName);
             });
+
             step("Фамилия", () -> {
-                orderService.writeSurname();
+                order.writeSurname(lastName);
             });
+
             step("Email", () -> {
-                orderService.writeEmail();
+                order.writeEmail(email);
             });
+
             step("Телефон", () -> {
-                orderService.writeTelephone();
+                order.writeTelephone("7777777777");
             });
+
             step("Название компании", () -> {
-                orderService.writeCompany();
+                order.writeCompany(company);
             });
+
             step("Сообщение", () -> {
-                orderService.writeMessage();
+                order.writeMessage("FunctionalTest");
             });
+
             step("Навести курсор на кнопку отправить", () -> {
-                orderService.hoverToSend();
+                order.hoverToSend();
             });
+
             step("Закрыть окно заказа услуг", () -> {
-                orderService.closeContainer();
+                order.closeContainer();
             });
         });
 
         step("Переход на раздел Тестирование мобильных приложений", () -> {
             whatWeTesting.testingMobileApps();
         });
-        Selenide.back();
 
+        Selenide.back();
 
         step("Переход на раздел УМНЫЕ УСТРОЙСТВА, VR, AR", () -> {
             whatWeTesting.testingDevices();
 
             step("Имя", () -> {
-                orderService.writeName();
+                order.writeName(firstName);
             });
+
             step("Фамилия", () -> {
-                orderService.writeSurname();
+                order.writeSurname(lastName);
             });
+
             step("Email", () -> {
-                orderService.writeEmail();
+                order.writeEmail(email);
             });
+
             step("Телефон", () -> {
-                orderService.writeTelephone();
+                order.writeTelephone("7777777777");
             });
+
             step("Название компании", () -> {
-                orderService.writeCompany();
+                order.writeCompany(company);
             });
+
             step("Сообщение", () -> {
-                orderService.writeMessage();
+                order.writeMessage("FunctionalTest");
             });
+
             step("Навести курсор на кнопку отправить", () -> {
-                orderService.hoverToSend();
+                order.hoverToSend();
             });
+
             step("Закрыть окно заказа услуг", () -> {
-                orderService.closeContainer();
+                order.closeContainer();
             });
         });
 
         step("Заказать услугу", () -> {
             whatWeTesting.orderServiceForTesting();
-
             step("Имя", () -> {
-                orderService.writeName();
+                order.writeName(firstName);
             });
+
             step("Фамилия", () -> {
-                orderService.writeSurname();
+                order.writeSurname(lastName);
             });
+
             step("Email", () -> {
-                orderService.writeEmail();
+                order.writeEmail(email);
             });
+
             step("Телефон", () -> {
-                orderService.writeTelephone();
+                order.writeTelephone("7777777777");
             });
+
             step("Название компании", () -> {
-                orderService.writeCompany();
+                order.writeCompany(company);
             });
+
             step("Сообщение", () -> {
-                orderService.writeMessage();
+                order.writeMessage("FunctionalTest");
             });
+
             step("Навести курсор на кнопку отправить", () -> {
-                orderService.hoverToSend();
+                order.hoverToSend();
             });
+
             step("Закрыть окно заказа услуг", () -> {
-                orderService.closeContainer();
+                order.closeContainer();
             });
         });
-
-        sleep(2000);
-
     }
 
     @Test
-    void threeReasonsToWorkWithUs() { // три причины работать с нами
-
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.TRIVIAL)
+    void threeReasonsToWorkWithUs() {
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
 
         step("Название раздела 3 ПРИЧИНЫ РАБОТАТЬ С НАМИ", () -> {
             threeReasons.sectionThreeReasonsToWorkWithUs();
         });
+
         step("Первая причина", () -> {
             threeReasons.firstReason();
         });
+
         step("Вторая причина", () -> {
             threeReasons.secondReason();
         });
+
         step("Третья причина", () -> {
             threeReasons.thirdReason();
         });
     }
 
     @Test
-    void serviceCatalog() { // каталог услуг
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.BLOCKER)
+    void serviceCatalog() {
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
 
         step("Название раздела КАТАЛОГ УСЛУГ", () -> {
             catalog.sectionServiceCatalog();
         });
 
         step("СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
-
             step("Свернуть раздел СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
                 catalog.closeTestingOfBusinessProcess();
             });
@@ -353,33 +453,42 @@ public class FunctionalTesting extends TastBase {
             step("Проверить текст в разделе СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
                 catalog.checkTextTestingOfBusinessProcess();
             });
+
             step("Заказать услугу в разделе СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
                 step("Заказать услугу", () -> {
                     catalog.clickOnOrderService();
                 });
+
                 step("Имя", () -> {
-                    orderService.writeName();
+                    order.writeName(firstName);
                 });
+
                 step("Фамилия", () -> {
-                    orderService.writeSurname();
+                    order.writeSurname(lastName);
                 });
+
                 step("Email", () -> {
-                    orderService.writeEmail();
+                    order.writeEmail(email);
                 });
+
                 step("Телефон", () -> {
-                    orderService.writeTelephone();
+                    order.writeTelephone("7777777777");
                 });
+
                 step("Название компании", () -> {
-                    orderService.writeCompany();
+                    order.writeCompany(company);
                 });
+
                 step("Сообщение", () -> {
-                    orderService.writeMessage();
+                    order.writeMessage("FunctionalTest");
                 });
+
                 step("Навести курсор на кнопку отправить", () -> {
-                    orderService.hoverToSend();
+                    order.hoverToSend();
                 });
+
                 step("Закрыть окно заказа услуг", () -> {
-                    orderService.closeContainer();
+                    order.closeContainer();
                 });
             });
         });
@@ -388,38 +497,49 @@ public class FunctionalTesting extends TastBase {
             step("Открыть раздел СИСТЕМНОЕ ТЕСТИРОВАНИЕ", () -> {
                 catalog.openSystemTesting();
             });
+
             step("Проверить текст в разделе СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
                 catalog.checkTextSystemTesting();
             });
+
             step("Заказать услугу в разделе СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ", () -> {
                 step("Заказать услугу", () -> {
                     catalog.clickOnOrderService();
                 });
+
                 step("Имя", () -> {
-                    orderService.writeName();
+                    order.writeName(firstName);
                 });
+
                 step("Фамилия", () -> {
-                    orderService.writeSurname();
+                    order.writeSurname(lastName);
                 });
+
                 step("Email", () -> {
-                    orderService.writeEmail();
+                    order.writeEmail(email);
                 });
+
                 step("Телефон", () -> {
-                    orderService.writeTelephone();
+                    order.writeTelephone("7777777777");
                 });
+
                 step("Название компании", () -> {
-                    orderService.writeCompany();
+                    order.writeCompany(company);
                 });
+
                 step("Сообщение", () -> {
-                    orderService.writeMessage();
+                    order.writeMessage("FunctionalTest");
                 });
+
                 step("Навести курсор на кнопку отправить", () -> {
-                    orderService.hoverToSend();
+                    order.hoverToSend();
                 });
+
                 step("Закрыть окно заказа услуг", () -> {
-                    orderService.closeContainer();
+                    order.closeContainer();
                 });
             });
+
             step("Свернуть раздел СИСТЕМНОЕ ТЕСТИРОВАНИЕ", () -> {
                 catalog.closeSystemTesting();
             });
@@ -429,80 +549,100 @@ public class FunctionalTesting extends TastBase {
             step("Открыть раздел ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
                 catalog.openIntegrationTesting();
             });
+
             step("Проверить текст в разделе ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
                 catalog.checkTextIntegrationTesting();
             });
+
             step("Заказать услугу в разделе ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
                 step("Заказать услугу", () -> {
                     catalog.clickOnOrderService();
                 });
                 step("Имя", () -> {
-                    orderService.writeName();
+                    order.writeName(firstName);
                 });
+
                 step("Фамилия", () -> {
-                    orderService.writeSurname();
+                    order.writeSurname(lastName);
                 });
+
                 step("Email", () -> {
-                    orderService.writeEmail();
+                    order.writeEmail(email);
                 });
+
                 step("Телефон", () -> {
-                    orderService.writeTelephone();
+                    order.writeTelephone("7777777777");
                 });
+
                 step("Название компании", () -> {
-                    orderService.writeCompany();
+                    order.writeCompany(company);
                 });
+
                 step("Сообщение", () -> {
-                    orderService.writeMessage();
+                    order.writeMessage("FunctionalTest");
                 });
+
                 step("Навести курсор на кнопку отправить", () -> {
-                    orderService.hoverToSend();
+                    order.hoverToSend();
                 });
+
                 step("Закрыть окно заказа услуг", () -> {
-                    orderService.closeContainer();
+                    order.closeContainer();
                 });
             });
+
             step("Свернуть раздел ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ", () -> {
                 catalog.closeIntegrationTesting();
             });
-
         });
 
         step("ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
             step("Открыть раздел ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
                 catalog.openUserTesting();
             });
+
             step("Проверить текст в разделе ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
                 catalog.checkTextUserTesting();
             });
+
             step("Заказать услугу в разделе ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
                 step("Заказать услугу", () -> {
                     catalog.clickOnOrderService();
                 });
+
                 step("Имя", () -> {
-                    orderService.writeName();
+                    order.writeName(firstName);
                 });
+
                 step("Фамилия", () -> {
-                    orderService.writeSurname();
+                    order.writeSurname(lastName);
                 });
+
                 step("Email", () -> {
-                    orderService.writeEmail();
+                    order.writeEmail(email);
                 });
+
                 step("Телефон", () -> {
-                    orderService.writeTelephone();
+                    order.writeTelephone("7777777777");
                 });
+
                 step("Название компании", () -> {
-                    orderService.writeCompany();
+                    order.writeCompany(company);
                 });
+
                 step("Сообщение", () -> {
-                    orderService.writeMessage();
+                    order.writeMessage("FunctionalTest");
                 });
+
                 step("Навести курсор на кнопку отправить", () -> {
-                    orderService.hoverToSend();
+                    order.hoverToSend();
                 });
+
                 step("Закрыть окно заказа услуг", () -> {
-                    orderService.closeContainer();
+                    order.closeContainer();
                 });
             });
+
             step("Свернуть раздел ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
                 catalog.closeUserTesting();
             });
@@ -512,69 +652,114 @@ public class FunctionalTesting extends TastBase {
             step("Открыть раздел АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ", () -> {
                 catalog.openAuditAndOptimizationOfTestModel();
             });
+
             step("Проверить текст в разделе АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ", () -> {
                 catalog.checkTextAuditAndOptimizationOfTestModel();
             });
+
             step("Заказать услугу в разделе ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
                 step("Заказать услугу", () -> {
                     catalog.clickOnOrderService();
                 });
                 step("Имя", () -> {
-                    orderService.writeName();
+                    order.writeName(firstName);
                 });
+
                 step("Фамилия", () -> {
-                    orderService.writeSurname();
+                    order.writeSurname(lastName);
                 });
+
                 step("Email", () -> {
-                    orderService.writeEmail();
+                    order.writeEmail(email);
                 });
+
                 step("Телефон", () -> {
-                    orderService.writeTelephone();
+                    order.writeTelephone("7777777777");
                 });
+
                 step("Название компании", () -> {
-                    orderService.writeCompany();
+                    order.writeCompany(company);
                 });
+
                 step("Сообщение", () -> {
-                    orderService.writeMessage();
+                    order.writeMessage("FunctionalTest");
                 });
+
                 step("Навести курсор на кнопку отправить", () -> {
-                    orderService.hoverToSend();
+                    order.hoverToSend();
                 });
+
                 step("Закрыть окно заказа услуг", () -> {
-                    orderService.closeContainer();
+                    order.closeContainer();
                 });
             });
+
             step("Свернуть раздел ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
                 catalog.closeAuditAndOptimizationOfTestModel();
             });
         });
 
+        step("ТРЕНИНГИ И ОБУЧЕНИЕ", () -> {
+            step("Закрыть окно заказа услуг", () -> {
+                catalog.openTrainingAndEducation();
+            });
 
-    ////////-----------------////////----------------------////////-----------------////////-----------////////----
+            step("Проверить текст в разделе ТРЕНИНГИ И ОБУЧЕНИЕ", () -> {
+                catalog.checkTextTrainingAndEducation();
+            });
 
-        //открыть ТРЕНИНГИ И ОБУЧЕНИЕ
-        $(".catalog").find(byText("ТРЕНИНГИ И ОБУЧЕНИЕ")).click();
-        //проверка
-        $(".catalog").shouldHave(text("«Инвестиции в знания всегда приносят наибольший доход» (Б.Франклин)."));
+            step("Заказать услугу в разделе ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+                step("Заказать услугу", () -> {
+                    catalog.clickOnOrderService();
+                });
 
-        //нажать на кнопку Заказать услугу
-        $(byAttribute("title", "Заказать услугу")).click();
+                step("Имя", () -> {
+                    order.writeName(firstName);
+                });
 
-        //заполниьт бланк и закрыть
-        $(".premium-modal-box-close-button-container").click();
+                step("Фамилия", () -> {
+                    order.writeSurname(lastName);
+                });
 
-        //закрыть АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ
-        $(".catalog").find(byText("ТРЕНИНГИ И ОБУЧЕНИЕ")).click();
-        ////////-----------------////////----------------------////////-----------------////////-----------////////----
+                step("Email", () -> {
+                    order.writeEmail(email);
+                });
 
-        sleep(2000);
+                step("Телефон", () -> {
+                    order.writeTelephone("7777777777");
+                });
 
+                step("Название компании", () -> {
+                    order.writeCompany(company);
+                });
+
+                step("Сообщение", () -> {
+                    order.writeMessage("FunctionalTest");
+                });
+
+                step("Навести курсор на кнопку отправить", () -> {
+                    order.hoverToSend();
+                });
+
+                step("Закрыть окно заказа услуг", () -> {
+                    order.closeContainer();
+                });
+            });
+
+            step("Свернуть раздел ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)", () -> {
+                catalog.closeTrainingAndEducation();
+            });
+        });
     }
 
     @Test
-    void howWeAreWorking() { // как мы работаем
-
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.BLOCKER)
+    void howWeAreWorking() {
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
 
         step("Название раздела КАК МЫ РАБОТАЕМ", () -> {
             HowWorking.sectionHowWeAreWorking();
@@ -596,81 +781,99 @@ public class FunctionalTesting extends TastBase {
             HowWorking.stepFourth();
         });
 
-        step("Нажать на кнопку Заказать услугу", () -> {
-            HowWorking.orderServiceForWorking();
+        step("Заказать услугу", () -> {
+            step("Нажать на кнопку Заказать услугу", () -> {
+                HowWorking.orderServiceForWorking();
+            });
 
             step("Имя", () -> {
-                orderService.writeName();
+                order.writeName(firstName);
             });
+
             step("Фамилия", () -> {
-                orderService.writeSurname();
+                order.writeSurname(lastName);
             });
+
             step("Email", () -> {
-                orderService.writeEmail();
+                order.writeEmail(email);
             });
+
             step("Телефон", () -> {
-                orderService.writeTelephone();
+                order.writeTelephone("7777777777");
             });
+
             step("Название компании", () -> {
-                orderService.writeCompany();
+                order.writeCompany(company);
             });
+
             step("Сообщение", () -> {
-                orderService.writeMessage();
+                order.writeMessage("FunctionalTest");
             });
+
             step("Навести курсор на кнопку отправить", () -> {
-                orderService.hoverToSend();
+                order.hoverToSend();
             });
+
             step("Закрыть окно заказа услуг", () -> {
-                orderService.closeContainer();
+                order.closeContainer();
             });
-
         });
-
-        sleep(3000);
-
     }
 
     @Test
-    void industries() { // отрасли
-
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.TRIVIAL)
+    void industries() {
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
 
         step("Название раздела ОТРАСЛИ", () -> {
             industries.sectionIndustries();
         });
 
         step("Название отраслей", () -> {
-
             step("Банковский сектор и Финансы", () -> {
                 industries.banksAndFinance();
             });
+
             step("Госструктуры", () -> {
                 industries.stateStructures();
             });
+
             step("Ритейл", () -> {
                 industries.retail();
             });
+
             step("Телеком", () -> {
                 industries.telecom();
             });
+
             step("Медицина", () -> {
                 industries.medicine();
             });
+
             step("Интернет", () -> {
                 industries.internet();
             });
+
             step("Интернет", () -> {
                 industries.industry();
             });
+
             step("Развлечения", () -> {
                 industries.entertainment();
             });
+
             step("Страхование", () -> {
                 industries.insurance();
             });
+
             step("Топливно - энергетическая отрасль", () -> {
                 industries.fuelAndEnergyIndustry();
             });
+
             step("Транспорт, логистика", () -> {
                 industries.transportLogistics();
             });
@@ -678,10 +881,13 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    void examplesOfProjects() { // примеры проектов
-
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
-
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.BLOCKER)
+    void examplesOfProjects() {
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
 
         step("Название раздела ПРИМЕРЫ ПРОЕКТОВ", () -> {
             examples.sectionExamplesOfProjects();
@@ -698,6 +904,7 @@ public class FunctionalTesting extends TastBase {
         step("Переход ко всем клиентам", () -> {
             examples.clickOnViewAllClients();
         });
+
         Selenide.back();
 
         step("Кликнуть на следующий слайд", () -> {
@@ -707,33 +914,38 @@ public class FunctionalTesting extends TastBase {
         step("Переход ко всем клиентам", () -> {
             examples.clickOnViewAllClients();
         });
+
         Selenide.back();
 
         step("Клик по левому индикатору", () -> {
             examples.clickOnLeftIndicator();
         });
+
         step("Переход ко всем клиентам", () -> {
             examples.clickOnViewAllClients();
         });
+
         Selenide.back();
 
         step("Клик по правому индикатору", () -> {
             examples.clickOnRightIndicator();
         });
+
         step("Переход ко всем клиентам", () -> {
             examples.clickOnViewAllClients();
         });
+
         Selenide.back();
-
-        sleep(500);
-
     }
 
     @Test
+    @Tag("Search")
+    @Owner("Taygib")
+    @Severity(SeverityLevel.BLOCKER)
     void clientsAboutUs() {
-
-        open("https://www.performance-lab.ru/funkcionalnoe-testirovanie");
-
+        step("Открыть страницу", () -> {
+            open("/funkcionalnoe-testirovanie");
+        });
 
         step("Название раздела КЛИЕНТЫ О НАС", () -> {
             clientsAboutUs.sectionClientsAboutUs();
@@ -745,13 +957,14 @@ public class FunctionalTesting extends TastBase {
             step("Закрыть клиента", () -> {
                 clientsAboutUs.close();
             });
+
             step("Пролистать в право пять раз", () -> {
                 clientsAboutUs.clickRightFiveTimes();
             });
+
             step("Пролистать в лево пять раз", () -> {
                 clientsAboutUs.clickLeftFiveTimes();
             });
-
         });
 
         step("Закрыть ", () -> {
@@ -764,9 +977,11 @@ public class FunctionalTesting extends TastBase {
             step("Закрыть клиента", () -> {
                 clientsAboutUs.close();
             });
+
             step("Пролистать в право пять раз", () -> {
                 clientsAboutUs.clickRightFiveTimes();
             });
+
             step("Пролистать в лево пять раз", () -> {
                 clientsAboutUs.clickLeftFiveTimes();
             });
@@ -782,9 +997,11 @@ public class FunctionalTesting extends TastBase {
             step("Закрыть клиента", () -> {
                 clientsAboutUs.close();
             });
+
             step("Пролистать в право пять раз", () -> {
                 clientsAboutUs.clickRightFiveTimes();
             });
+
             step("Пролистать в лево пять раз", () -> {
                 clientsAboutUs.clickLeftFiveTimes();
             });
@@ -800,9 +1017,11 @@ public class FunctionalTesting extends TastBase {
             step("Закрыть клиента", () -> {
                 clientsAboutUs.close();
             });
+
             step("Пролистать в право пять раз", () -> {
                 clientsAboutUs.clickRightFiveTimes();
             });
+
             step("Пролистать в лево пять раз", () -> {
                 clientsAboutUs.clickLeftFiveTimes();
             });
@@ -818,9 +1037,11 @@ public class FunctionalTesting extends TastBase {
             step("Закрыть клиента", () -> {
                 clientsAboutUs.close();
             });
+
             step("Пролистать в право пять раз", () -> {
                 clientsAboutUs.clickRightFiveTimes();
             });
+
             step("Пролистать в лево пять раз", () -> {
                 clientsAboutUs.clickLeftFiveTimes();
             });
@@ -836,9 +1057,11 @@ public class FunctionalTesting extends TastBase {
             step("Закрыть клиента", () -> {
                 clientsAboutUs.close();
             });
+
             step("Пролистать в право пять раз", () -> {
                 clientsAboutUs.clickRightFiveTimes();
             });
+
             step("Пролистать в лево пять раз", () -> {
                 clientsAboutUs.clickLeftFiveTimes();
             });
@@ -847,8 +1070,5 @@ public class FunctionalTesting extends TastBase {
         step("Закрыть", () -> {
             clientsAboutUs.closeClient();
         });
-
-        sleep(1000);
-
     }
 }

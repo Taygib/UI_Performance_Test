@@ -82,4 +82,15 @@ public class ServiceCatalogPage {
         $(".catalog").find(byText("АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ")).click();
     }
 
+    public void openTrainingAndEducation() {
+        $(".catalog").find(byText("ТРЕНИНГИ И ОБУЧЕНИЕ")).click();
+    }
+
+    public void checkTextTrainingAndEducation() {
+        $(".catalog").shouldHave(text("«Инвестиции в знания всегда приносят наибольший доход» (Б.Франклин)."));
+    }
+
+    public void closeTrainingAndEducation() {
+        $(".catalog").find(byText("ТРЕНИНГИ И ОБУЧЕНИЕ")).click();
+    }
 }
