@@ -1,24 +1,27 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ThreeReasonsPage {
+    private SelenideElement threeReason = $(".three_reason");
 
     public void sectionThreeReasonsToWorkWithUs() {
-        $(".three_reason").hover();
-        $(".three_reason").shouldHave(text("3 ПРИЧИНЫ РАБОТАТЬ С НАМИ"));
+        threeReason.hover();
+        threeReason.shouldHave(text("3 ПРИЧИНЫ РАБОТАТЬ С НАМИ"));
     }
 
     public void firstReason() {
-        $(".three_reason").shouldHave(text("МЫ СПЕЦИАЛИЗИРУЕМСЯ НА ТЕСТИРОВАНИИ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ"));
+        threeReason.shouldHave(text("МЫ СПЕЦИАЛИЗИРУЕМСЯ НА ТЕСТИРОВАНИИ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ"));
     }
 
     public void secondReason() {
-        $(".three_reason").shouldHave(text("ПРЕДМЕТНЫЕ ЗНАНИЯ В РАЗЛИЧНЫХ ОТРАСЛЯХ: БАНКИ, РИТЕЙЛ, ТЕЛЕКОМ"));
+        threeReason.shouldHave(text("ПРЕДМЕТНЫЕ ЗНАНИЯ В РАЗЛИЧНЫХ ОТРАСЛЯХ: БАНКИ, РИТЕЙЛ, ТЕЛЕКОМ"));
     }
 
     public void thirdReason() {
-        $(".three_reason").shouldHave(text("СОВРЕМЕННЫЕ И КЛАССИЧЕСКИЕ ПОДХОДЫ"));
+        threeReason.shouldHave(text("СОВРЕМЕННЫЕ И КЛАССИЧЕСКИЕ ПОДХОДЫ"));
     }
 }

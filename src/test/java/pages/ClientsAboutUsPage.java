@@ -1,5 +1,7 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selectors.byText;
@@ -7,30 +9,36 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ClientsAboutUsPage {
 
+    private SelenideElement clientsAbout = $(".clients-about"),
+            ekkoLightboxContainer = $(".ekko-lightbox-container");
+
     public void sectionClientsAboutUs() {
-        $(".clients-about").hover();
-        $(".clients-about").shouldHave(text("КЛИЕНТЫ О НАС"));
+        clientsAbout.hover();
+        clientsAbout.shouldHave(text("КЛИЕНТЫ О НАС"));
     }
 
     public void clickOnX5RetailGroup() {
-        $(".clients-about").$(byAttribute("title", "X5 Retail Group pdf")).click();
+        clientsAbout.$(byAttribute("title", "X5 Retail Group pdf")).click();
     }
 
     public void clickOnDitOmsk() {
-        $(".clients-about").$(byAttribute("title", "ДИТ Омск pdf")).click();
+        clientsAbout.$(byAttribute("title", "ДИТ Омск pdf")).click();
     }
 
     public void clickOnRolf() {
-        $(".clients-about").$(byAttribute("title", "Рольф pdf")).click();
+        clientsAbout.$(byAttribute("title", "Рольф pdf")).click();
     }
+
     public void clickOnRostelekom() {
-        $(".clients-about").$(byAttribute("title", "Ростелеком pdf")).click();
+        clientsAbout.$(byAttribute("title", "Ростелеком pdf")).click();
     }
+
     public void clickOnVTB24() {
-        $(".clients-about").$(byAttribute("title", "ВТБ24 pdf")).click();
+        clientsAbout.$(byAttribute("title", "ВТБ24 pdf")).click();
     }
+
     public void clickOnWitology() {
-        $(".clients-about").$(byAttribute("title", "Witology pdf")).click();
+        clientsAbout.$(byAttribute("title", "Witology pdf")).click();
     }
 
     public void close() {
@@ -38,21 +46,21 @@ public class ClientsAboutUsPage {
     }
 
     public void clickRightFiveTimes() {
-        $(".ekko-lightbox-container").find(byText("❯")).hover();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
-        $(".ekko-lightbox-container").find(byText("❯")).click();
+        ekkoLightboxContainer.find(byText("❯")).hover();
+        ekkoLightboxContainer.find(byText("❯")).click();
+        ekkoLightboxContainer.find(byText("❯")).click();
+        ekkoLightboxContainer.find(byText("❯")).click();
+        ekkoLightboxContainer.find(byText("❯")).click();
+        ekkoLightboxContainer.find(byText("❯")).click();
     }
 
     public void clickLeftFiveTimes() {
-        $(".ekko-lightbox-container").find(byText("❮")).hover();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
-        $(".ekko-lightbox-container").find(byText("❮")).click();
+        ekkoLightboxContainer.find(byText("❮")).hover();
+        ekkoLightboxContainer.find(byText("❮")).click();
+        ekkoLightboxContainer.find(byText("❮")).click();
+        ekkoLightboxContainer.find(byText("❮")).click();
+        ekkoLightboxContainer.find(byText("❮")).click();
+        ekkoLightboxContainer.find(byText("❮")).click();
     }
 
     public void closeClient() {

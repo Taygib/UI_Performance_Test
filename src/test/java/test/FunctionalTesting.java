@@ -45,7 +45,7 @@ public class FunctionalTesting extends TastBase {
             open("/funkcionalnoe-testirovanie");
         });
         step("Название загаловков в подменю", () -> {
-        menuContainPage.parameterMenu(menuSection.toString(), expectedButtons);
+            menuContainPage.parameterMenu(menuSection.toString(), expectedButtons);
         });
     }
 
