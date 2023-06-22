@@ -36,7 +36,8 @@ public class FunctionalTesting extends TastBase {
 
     @MethodSource
     @ParameterizedTest
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("MenuContain")
     @Owner("Taygib")
     @Severity(SeverityLevel.BLOCKER)
     void menuContain(ContainMenu menuSection, List<String> expectedButtons) {
@@ -50,7 +51,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("FirstThreeOrder")
     @Owner("Taygib")
     @Severity(SeverityLevel.BLOCKER)
     void firstThreeButtonsOrderService() {
@@ -95,7 +97,7 @@ public class FunctionalTesting extends TastBase {
             });
         });
 
-        step(" под названием Функциональное тестирование нажать кнопку Заказать услугу", () -> {
+        step(" под названием =Функциональное тестирование= нажать кнопку Заказать услугу", () -> {
 
             step("Проверка на наличие текста", () -> {
                 $(".col-12").shouldHave(text("Функциональное тестирование"));
@@ -189,7 +191,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("OurClients")
     @Owner("Taygib")
     @Severity(SeverityLevel.BLOCKER)
     void ourClients() {
@@ -266,7 +269,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("WhatWeAreTesting")
     @Owner("Taygib")
     @Severity(SeverityLevel.BLOCKER)
     void whatWeAreTesting() {
@@ -403,7 +407,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("ThreeReasonsToWork")
     @Owner("Taygib")
     @Severity(SeverityLevel.TRIVIAL)
     void threeReasonsToWorkWithUs() {
@@ -429,7 +434,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("ServiceCatalog")
     @Owner("Taygib")
     @Severity(SeverityLevel.BLOCKER)
     void serviceCatalog() {
@@ -753,7 +759,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("HowWorking")
     @Owner("Taygib")
     @Severity(SeverityLevel.BLOCKER)
     void howWeAreWorking() {
@@ -821,7 +828,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("Industries")
     @Owner("Taygib")
     @Severity(SeverityLevel.TRIVIAL)
     void industries() {
@@ -881,7 +889,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("Examples")
     @Owner("Taygib")
     @Severity(SeverityLevel.BLOCKER)
     void examplesOfProjects() {
@@ -939,7 +948,8 @@ public class FunctionalTesting extends TastBase {
     }
 
     @Test
-    @Tag("Search")
+    @Tag("Research")
+    @Tag("Clients")
     @Owner("Taygib")
     @Severity(SeverityLevel.BLOCKER)
     void clientsAboutUs() {

@@ -48,3 +48,58 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+task testResearch(type: Test) {
+    useJUnitPlatform() {
+        includeTags("Research")
+    }
+}
+task testMenuContain(type: Test) {
+    useJUnitPlatform() {
+        includeTags("MenuContain")
+    }
+}
+task testFirstThreeOrder(type: Test) {
+    useJUnitPlatform() {
+        includeTags("FirstThreeOrder")
+    }
+}
+task testOurClients(type: Test) {
+    useJUnitPlatform() {
+        includeTags("OurClients")
+    }
+}
+task testWhatWeAreTesting(type: Test) {
+    useJUnitPlatform() {
+        includeTags("WhatWeAreTesting")
+    }
+}
+task testThreeReasonsToWork(type: Test) {
+    useJUnitPlatform() {
+        includeTags("ThreeReasonsToWork")
+    }
+}
+task testServiceCatalog(type: Test) {
+    useJUnitPlatform() {
+        includeTags("ServiceCatalog")
+    }
+}
+task testHowWorking(type: Test) {
+    useJUnitPlatform() {
+        includeTags("HowWorking")
+    }
+}
+task testIndustries(type: Test) {
+    useJUnitPlatform() {
+        includeTags("Industries")
+    }
+}
+task testExamples(type: Test) {
+    useJUnitPlatform() {
+        includeTags("Examples")
+    }
+}
+task testClients(type: Test) {
+    useJUnitPlatform() {
+        includeTags("Clients")
+    }
+}
