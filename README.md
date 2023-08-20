@@ -16,3 +16,34 @@
   <a href="https://www.java.com/"><img width="6%" title="Java" src="src/test/resources/materials/pictures/Java.png"></a>
   <a href="https://junit.org/junit5/"><img width="6%" title="junit5" src="src/test/resources/materials/pictures/junit5.png"> </a>
 </p>
+
+## :page_with_curl: Проверки
+
+##  <img width="5%" title="Jenkins" src="materials/pictures/Jenkins.png"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/Students/job/testX5Group/)  :gear:
+<p align="center">
+<img width="70%" title="Jenkins Build" src="materials/screens/Jenkins Start.png?raw=true">
+ </p>
+
+__*Сборка:*__
+
+## :rocket: Запуск тестов
+
+__*Локально, из терминала:*__
+```
+gradle clean test
+```
+__*Удаленно, из терминала:*__
+```
+gradle clean test -DisRemote=true
+```
+__*Удаленно, из Jenkins:*__
+
+
+### Фаил test.properties
+Для запуска теста локально нужно создать фаил в папке resources (src/test/resources) и необходимо указать следующее параметры
+```
+selenoid_UserName = UserName
+selenoid_Password = Password
+selenoid_Url = Url
+```
+## :bar_chart: Пример отчета о прохождении тестов в Allure и Telegram
