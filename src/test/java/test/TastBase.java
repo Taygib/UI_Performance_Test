@@ -24,7 +24,7 @@ public class TastBase {
     static void beforeAll() {
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserSize = System.getProperty("brSize", "1520x780");
-        Configuration.browserVersion = System.getProperty("brVersion", "115.0");
+        Configuration.browserVersion = System.getProperty("brVersion", "100.0");
 
         if (isRemote) {
             Configuration.remote = "https://" + selenoidConfig.login() + ":" + selenoidConfig.password() +
