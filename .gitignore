@@ -1,6 +1,14 @@
 /.gradle
+.gradle
 /.idea
 !**/src/main/**
 !**/src/test/**
 *.log
 .allure
+gradlew
+gradlew.bat
+build
+/src/test/resources/test.properties
+notifications/config.json
+notifications/draft.txt
+gradle/wrapper

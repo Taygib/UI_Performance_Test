@@ -8,20 +8,20 @@ import static com.codeborne.selenide.Selenide.$;
 public class ThreeReasonsPage {
     private SelenideElement threeReason = $(".three_reason");
 
-    public void sectionThreeReasonsToWorkWithUs() {
+    public void sectionThreeReasonsToWorkWithUs(String threeReasons) {
         threeReason.hover();
-        threeReason.shouldHave(text("3 ПРИЧИНЫ РАБОТАТЬ С НАМИ"));
+        threeReason.shouldHave(text(threeReasons));
     }
 
-    public void firstReason() {
-        threeReason.shouldHave(text("МЫ СПЕЦИАЛИЗИРУЕМСЯ НА ТЕСТИРОВАНИИ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ"));
+    public void checkFirstReason(String firstReason) {
+        threeReason.shouldHave(text(firstReason));
     }
 
-    public void secondReason() {
-        threeReason.shouldHave(text("ПРЕДМЕТНЫЕ ЗНАНИЯ В РАЗЛИЧНЫХ ОТРАСЛЯХ: БАНКИ, РИТЕЙЛ, ТЕЛЕКОМ"));
+    public void checkSecondReason(String secondReason) {
+        threeReason.shouldHave(text(secondReason));
     }
 
-    public void thirdReason() {
-        threeReason.shouldHave(text("СОВРЕМЕННЫЕ И КЛАССИЧЕСКИЕ ПОДХОДЫ"));
+    public void checkThirdReason(String thirdReason) {
+        threeReason.shouldHave(text(thirdReason));
     }
 }

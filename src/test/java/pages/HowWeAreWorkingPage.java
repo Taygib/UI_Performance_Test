@@ -10,36 +10,32 @@ public class HowWeAreWorkingPage {
     private SelenideElement howWeWork = $(".how-we-work"),
             information = $(".information");
 
-    public void sectionHowWeAreWorking() {
+    public void sectionHowWeAreWorking(String howWeAreWorking) {
         howWeWork.hover();
-        howWeWork.shouldHave(text("КАК МЫ РАБОТАЕМ"));
+        howWeWork.shouldHave(text(howWeAreWorking));
     }
 
-    public void stepFirst() {
-        howWeWork.shouldHave(text("Анализ программного обеспечения и документации (BRD, FSD, User stories)"));
-        howWeWork.find(byText("01.")).click();
-        information.shouldHave(text("Анализ программного обеспечения и документации (BRD, FSD, User stories)"));
+    public void stepFirst(String nameFirstStep, String firstStep) {
+        howWeWork.shouldHave(text(nameFirstStep));
+        howWeWork.find(byText(firstStep)).click();
+        information.shouldHave(text(nameFirstStep));
     }
 
-    public void stepSecond() {
-        howWeWork.shouldHave(text("Разработка тестовой модели"));
-        howWeWork.find(byText("02.")).click();
-        information.shouldHave(text("Разработка тестовой модели"));
+    public void stepSecond(String nameSecondStep, String secondStep) {
+        howWeWork.shouldHave(text(nameSecondStep));
+        howWeWork.find(byText(secondStep)).click();
+        information.shouldHave(text(nameSecondStep));
     }
 
-    public void stepThird() {
-        howWeWork.shouldHave(text("Проведение тестирования"));
-        howWeWork.find(byText("03.")).click();
-        information.shouldHave(text("Проведение тестирования"));
+    public void stepThird(String nameThirdStep, String thirdStep) {
+        howWeWork.shouldHave(text(nameThirdStep));
+        howWeWork.find(byText(thirdStep)).click();
+        information.shouldHave(text(nameThirdStep));
     }
 
-    public void stepFourth() {
-        howWeWork.shouldHave(text("Подготовка отчета"));
-        howWeWork.find(byText("04.")).click();
-        information.shouldHave(text("Подготовка отчета"));
-    }
-
-    public void orderServiceForWorking() {
-        howWeWork.find(byText("Заказать услугу")).click();
+    public void stepFourth(String nameFourthStep, String fourthStep) {
+        howWeWork.shouldHave(text(nameFourthStep));
+        howWeWork.find(byText(fourthStep)).click();
+        information.shouldHave(text(nameFourthStep));
     }
 }

@@ -3,97 +3,90 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ServiceCatalogPage {
     private SelenideElement catalog = $(".catalog");
 
-    public void sectionServiceCatalog() {
+    public void sectionServiceCatalog(String serviceCatalog) {
         catalog.hover();
-        catalog.shouldHave(text("КАТАЛОГ УСЛУГ"));
+        catalog.shouldHave(text(serviceCatalog));
     }
 
-    public void closeTestingOfBusinessProcess() {
-        catalog.find(byText("СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ")).click();
+    public void closeTestingOfBusinessProcess(String businessProcess) {
+        catalog.find(byText(businessProcess)).click();
     }
 
-    public void openTestingOfBusinessProcess() {
-        catalog.find(byText("СКВОЗНОЕ ТЕСТИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ")).click();
+    public void openTestingOfBusinessProcess(String businessProcess) {
+        catalog.find(byText(businessProcess)).click();
     }
 
-    public void checkTextTestingOfBusinessProcess() {
-        catalog.shouldHave(text("Тестирование, позволяющее проверить целостный бизнес-процесс," +
-                " включающий прохождение информационных потоков через ряд интегрированных между собой систем."));
+    public void checkOpenTestingOfBusinessProcess(String testingOfBusinessProcess) {
+        catalog.shouldHave(text(testingOfBusinessProcess));
     }
 
-    public void clickOnOrderService() {
-        $(byAttribute("title", "Заказать услугу")).click();
+    //  public void clickOnOrderService() {
+        //      $(byAttribute("title", "Заказать услугу")).click();
+        //  }
+
+    public void openSystemTesting(String systemTesting) {
+        catalog.find(byText(systemTesting)).click();
     }
 
-    public void openSystemTesting() {
-        catalog.find(byText("СИСТЕМНОЕ ТЕСТИРОВАНИЕ")).click();
+    public void checkOpenSystemTesting(String textSystemTesting) {
+        catalog.shouldHave(text(textSystemTesting));
     }
 
-    public void checkTextSystemTesting() {
-        catalog.shouldHave(text("Процесс тестирования системы в целом с целью проверки того," +
-                " что она соответствует установленным требованиям."));
+    public void closeSystemTesting(String closeSystemTesting) {
+        catalog.find(byText(closeSystemTesting)).click();
     }
 
-    public void closeSystemTesting() {
-        catalog.find(byText("СИСТЕМНОЕ ТЕСТИРОВАНИЕ")).click();
+    public void openIntegrationTesting(String integrationTesting) {
+        catalog.find(byText(integrationTesting)).click();
     }
 
-    public void openIntegrationTesting() {
-        catalog.find(byText("ИНТЕГРАЦИОННОЕ ТЕСТИРОВАНИЕ")).click();
+    public void checkOpenIntegrationTesting(String textInIntegrationTesting) {
+        catalog.shouldHave(text(textInIntegrationTesting));
     }
 
-    public void checkTextIntegrationTesting() {
-        catalog.shouldHave(text("Тестирование, выполняемое для обнаружения дефектов в интерфейсах " +
-                "и во взаимодействии между интегрированными компонентами или системами."));
+    public void closeIntegrationTesting(String integrationTesting) {
+        catalog.find(byText(integrationTesting)).click();
     }
 
-    public void closeIntegrationTesting() {
-        catalog.find(byText("СИСТЕМНОЕ ТЕСТИРОВАНИЕ")).click();
+    public void openUserTesting(String userTesting) {
+        catalog.find(byText(userTesting)).click();
     }
 
-    public void openUserTesting() {
-        catalog.find(byText("ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)")).click();
+    public void checkOpenUserTesting(String textUserTesting) {
+        catalog.shouldHave(text(textUserTesting));
     }
 
-    public void checkTextUserTesting() {
-        catalog.shouldHave(text("Приемочное пользовательское тестирование " +
-                "(UAT — User Acceptance Testing) – тестирование, которое проводится конечными пользователями системы " +
-                "с целью принятия решения о внедрении."));
+    public void closeUserTesting(String textUserTesting) {
+        catalog.find(byText(textUserTesting)).click();
     }
 
-    public void closeUserTesting() {
-        catalog.find(byText("ПОЛЬЗОВАТЕЛЬСКОЕ ТЕСТИРОВАНИЕ (UAT)")).click();
+    public void openAuditAndOptimizationOfTestModel(String auditAndOptimization) {
+        catalog.find(byText(auditAndOptimization)).click();
     }
 
-    public void openAuditAndOptimizationOfTestModel() {
-        catalog.find(byText("АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ")).click();
+    public void checkOpenAuditAndOptimizationOfTestModel(String textAuditAndOptimization) {
+        catalog.shouldHave(text(textAuditAndOptimization));
     }
 
-    public void checkTextAuditAndOptimizationOfTestModel() {
-        catalog.shouldHave(text("Проведение независимой оценки тестовой модели на предмет" +
-                " соответствия стандартам, а также предоставление рекомендаций для повышения качества данной модели."));
+    public void closeAuditAndOptimizationOfTestModel(String auditAndOptimization) {
+        catalog.find(byText(auditAndOptimization)).click();
     }
 
-    public void closeAuditAndOptimizationOfTestModel() {
-        catalog.find(byText("АУДИТ И ОПТИМИЗАЦИЯ ТЕСТОВОЙ МОДЕЛИ")).click();
+    public void openTrainingAndEducation(String trainingAndEducation) {
+        catalog.find(byText(trainingAndEducation)).click();
     }
 
-    public void openTrainingAndEducation() {
-        catalog.find(byText("ТРЕНИНГИ И ОБУЧЕНИЕ")).click();
+    public void checkOpenTrainingAndEducation(String textTrainingAndEducation) {
+        catalog.shouldHave(text(textTrainingAndEducation));
     }
 
-    public void checkTextTrainingAndEducation() {
-        catalog.shouldHave(text("«Инвестиции в знания всегда приносят наибольший доход» (Б.Франклин)."));
-    }
-
-    public void closeTrainingAndEducation() {
-        catalog.find(byText("ТРЕНИНГИ И ОБУЧЕНИЕ")).click();
+    public void closeTrainingAndEducation(String trainingAndEducation) {
+        catalog.find(byText(trainingAndEducation)).click();
     }
 }

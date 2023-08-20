@@ -4,66 +4,57 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byAttribute;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ClientsAboutUsPage {
 
     private SelenideElement clientsAbout = $(".clients-about"),
-            ekkoLightboxContainer = $(".ekko-lightbox-container");
+            clientsAboutX5Retail = $(".clients-about").
+                    $(byAttribute("title", "X5 Retail Group pdf")),
+            clientsAboutDitOmsk = $(".clients-about").
+                    $(byAttribute("title", "ДИТ Омск pdf")),
+            clientsAboutRolf = $(".clients-about").
+                    $(byAttribute("title", "Рольф pdf")),
+            clientsAboutRostelekom = $(".clients-about").
+                    $(byAttribute("title", "Ростелеком pdf")),
+            clientsAboutVTB24 = $(".clients-about").
+                    $(byAttribute("title", "ВТБ24 pdf")),
+            clientsAboutWitology = $(".clients-about").
+                    $(byAttribute("title", "Witology pdf"));
 
-    public void sectionClientsAboutUs() {
+
+    public void sectionClientsAboutUs(String aboutUs) {
         clientsAbout.hover();
-        clientsAbout.shouldHave(text("КЛИЕНТЫ О НАС"));
+        clientsAbout.shouldHave(text(aboutUs));
     }
 
-    public void clickOnX5RetailGroup() {
-        clientsAbout.$(byAttribute("title", "X5 Retail Group pdf")).click();
+    public void clickOnX5RetailGroup(String x5Retail) {
+        clientsAboutX5Retail.hover();
+        clientsAbout.shouldHave(text(x5Retail));
     }
 
-    public void clickOnDitOmsk() {
-        clientsAbout.$(byAttribute("title", "ДИТ Омск pdf")).click();
+    public void clickOnDitOmsk(String ditOmsk) {
+        clientsAboutDitOmsk.hover();
+        clientsAbout.shouldHave(text(ditOmsk));
     }
 
-    public void clickOnRolf() {
-        clientsAbout.$(byAttribute("title", "Рольф pdf")).click();
+    public void clickOnRolf(String rolf) {
+        clientsAboutRolf.hover();
+        clientsAbout.shouldHave(text(rolf));
     }
 
-    public void clickOnRostelekom() {
-        clientsAbout.$(byAttribute("title", "Ростелеком pdf")).click();
+    public void clickOnRostelekom(String rostelekom) {
+        clientsAboutRostelekom.hover();
+        clientsAbout.shouldHave(text(rostelekom));
     }
 
-    public void clickOnVTB24() {
-        clientsAbout.$(byAttribute("title", "ВТБ24 pdf")).click();
+    public void clickOnVTB24(String vtb24) {
+        clientsAboutVTB24.hover();
+        clientsAbout.shouldHave(text(vtb24));
     }
 
-    public void clickOnWitology() {
-        clientsAbout.$(byAttribute("title", "Witology pdf")).click();
-    }
-
-    public void close() {
-        $(".eicon-close").click();
-    }
-
-    public void clickRightFiveTimes() {
-        ekkoLightboxContainer.find(byText("❯")).hover();
-        ekkoLightboxContainer.find(byText("❯")).click();
-        ekkoLightboxContainer.find(byText("❯")).click();
-        ekkoLightboxContainer.find(byText("❯")).click();
-        ekkoLightboxContainer.find(byText("❯")).click();
-        ekkoLightboxContainer.find(byText("❯")).click();
-    }
-
-    public void clickLeftFiveTimes() {
-        ekkoLightboxContainer.find(byText("❮")).hover();
-        ekkoLightboxContainer.find(byText("❮")).click();
-        ekkoLightboxContainer.find(byText("❮")).click();
-        ekkoLightboxContainer.find(byText("❮")).click();
-        ekkoLightboxContainer.find(byText("❮")).click();
-        ekkoLightboxContainer.find(byText("❮")).click();
-    }
-
-    public void closeClient() {
-        $(".ekko-lightbox").pressEscape();
+    public void clickOnWitology(String witology) {
+        clientsAboutWitology.hover();
+        clientsAbout.shouldHave(text(witology));
     }
 }

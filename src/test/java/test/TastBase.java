@@ -1,44 +1,42 @@
 package test;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.github.javafaker.Faker;
+import config.SelenoidConfig;
+import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.*;
-import pages.component.OrderPage;
+
+import java.util.Map;
 
 public class TastBase {
+    private static SelenoidConfig selenoidConfig = ConfigFactory.create(SelenoidConfig.class, System.getProperties());
 
-    DeleteFormPage deleteForm = new DeleteFormPage();
-    OrderServicePage orderService = new OrderServicePage();
-    ClientsPage clients = new ClientsPage();
-    WhatWeAreTestingPage whatWeTesting = new WhatWeAreTestingPage();
-    ThreeReasonsPage threeReasons = new ThreeReasonsPage();
-    HowWeAreWorkingPage HowWorking = new HowWeAreWorkingPage();
-    IndustriesPage industries = new IndustriesPage();
-    ClientsAboutUsPage clientsAboutUs = new ClientsAboutUsPage();
-    ExamplesOfProjectsPage examples = new ExamplesOfProjectsPage();
-    ServiceCatalogPage catalog = new ServiceCatalogPage();
-    OrderPage order = new OrderPage();
-    MenuContainPage menuContainPage = new MenuContainPage();
-    Faker faker = new Faker();
-
+    protected static boolean isRemote = Boolean.getBoolean("isRemote");
 
     @BeforeAll
     static void beforeAll() {
-       Configuration.browser = System.getProperty("browser", "chrome");
-       Configuration.browserSize = System.getProperty("brSize", "1520x780");
-       Configuration.browserVersion = System.getProperty("brVersion", "100.0");
-  //     Configuration.remote = System.getProperty("selenoidRemote", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = System.getProperty("brSize", "1520x780");
+        Configuration.browserVersion = System.getProperty("brVersion", "115.0");
 
-  //      DesiredCapabilities capabilities = new DesiredCapabilities();
-  //      capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-  //              "enableVNC", true,
-  //              "enableVideo", true
-  //      ));
-  //     Configuration.browserCapabilities = capabilities;
+        if (isRemote) {
+            Configuration.remote = "https://" + selenoidConfig.login() + ":" + selenoidConfig.password() +
+                    "@" + selenoidConfig.url() + "/wd/hub";
+
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true
+            ));
+            Configuration.browserCapabilities = capabilities;
+        }
         Configuration.baseUrl = System.getProperty("baseUrl", "https://www.performance-lab.ru");
     }
 
@@ -47,12 +45,14 @@ public class TastBase {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
-  //  @AfterEach
-  //  void addAttachments() {
-  //      Attach.screenshotAs("Last screenshot");
-  //      Attach.pageSource();
-  //      Attach.browserConsoleLogs();
-  //      Attach.addVideo();
-  //      Selenide.closeWebDriver();
-  //  }
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        if (isRemote) {
+            Attach.addVideo();
+        }
+        Selenide.closeWebDriver();
+    }
 }

@@ -9,52 +9,52 @@ public class IndustriesPage {
 
     private SelenideElement industrys = $(".industrys");
 
-    public void sectionIndustries() {
+    public void sectionIndustries(String industries) {
         industrys.hover();
-        industrys.shouldHave(text("ОТРАСЛИ"));
+        industrys.shouldHave(text(industries));
     }
 
-    public void banksAndFinance() {
-        industrys.shouldHave(text("Банковский сектор и Финансы"));
+    public void banksAndFinance(String banksFinance) {
+        industrys.shouldHave(text(banksFinance));
     }
 
-    public void stateStructures() {
-        industrys.shouldHave(text("Госструктуры"));
+    public void stateStructures(String structures) {
+        industrys.shouldHave(text(structures));
     }
 
-    public void retail() {
-        industrys.shouldHave(text("Ритейл"));
+    public void retail(String retail) {
+        industrys.shouldHave(text(retail));
     }
 
-    public void telecom() {
-        industrys.shouldHave(text("Телеком"));
+    public void telecom(String telecom) {
+        industrys.shouldHave(text(telecom));
     }
 
-    public void medicine() {
-        industrys.shouldHave(text("Медицина"));
+    public void medicine(String medicine) {
+        industrys.shouldHave(text(medicine));
     }
 
-    public void internet() {
-        industrys.shouldHave(text("Интернет"));
+    public void internet(String internet) {
+        industrys.shouldHave(text(internet));
     }
 
-    public void industry() {
-        industrys.shouldHave(text("Промышленность"));
+    public void industry(String industry) {
+        industrys.shouldHave(text(industry));
     }
 
-    public void entertainment() {
-        industrys.shouldHave(text("Развлечения"));
+    public void entertainment(String entertainment) {
+        industrys.shouldHave(text(entertainment));
     }
 
-    public void insurance() {
-        industrys.shouldHave(text("Страхование"));
+    public void insurance(String insurance) {
+        industrys.shouldHave(text(insurance));
     }
 
-    public void fuelAndEnergyIndustry() {
-        industrys.shouldHave(text("Топливно - энергетическая отрасль"));
+    public void fuelAndEnergyIndustry(String fuel) {
+        industrys.shouldHave(text(fuel));
     }
 
-    public void transportLogistics() {
-        industrys.shouldHave(text("Транспорт, логистика"));
+    public void transportLogistics(String transport) {
+        industrys.shouldHave(text(transport));
     }
 }

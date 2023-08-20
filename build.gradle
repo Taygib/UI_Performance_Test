@@ -6,13 +6,13 @@ plugins {
 
 allure {
     report {
-        version.set("2.21.0")
+        version.set("2.23.0")
     }
     adapter { // отвечает за появление папки build/allure-results
         aspectjWeaver.set(true) //обработка аннотации @Step
         frameworks {
             junit5 { //название фреймворка
-                adapterVersion.set("2.21.0") //версия интеграции фреймворка и Allure
+                adapterVersion.set("2.23.0") //версия интеграции фреймворка и Allure
             }
         }
     }
@@ -34,20 +34,22 @@ repositories {
 
 dependencies {
     testImplementation(
-            //'com.codeborne:selenide:6.3.5',
-            'com.codeborne:selenide:6.15.0',
-            "org.junit.jupiter:junit-jupiter:5.9.3",
+            'com.codeborne:selenide:6.17.0',
+            "org.junit.jupiter:junit-jupiter:5.10.0",
             "org.slf4j:slf4j-simple:2.0.7",
-            'io.qameta.allure:allure-selenide:2.21.0',
-            "io.qameta.allure:allure-rest-assured:2.21.0",
+            'io.qameta.allure:allure-selenide:2.23.0',
+            "io.qameta.allure:allure-rest-assured:2.23.0",
             "com.github.javafaker:javafaker:1.0.2",
             "com.fasterxml.jackson.core:jackson-databind:2.14.2",
+            "org.aeonbits.owner:owner:1.0.12",
     )
 }
 
-test {
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 }
+
 task testResearch(type: Test) {
     useJUnitPlatform() {
         includeTags("Research")
@@ -58,14 +60,9 @@ task testMenuContain(type: Test) {
         includeTags("MenuContain")
     }
 }
-task testFirstThreeOrder(type: Test) {
+task testButtonsOrder(type: Test) {
     useJUnitPlatform() {
-        includeTags("FirstThreeOrder")
-    }
-}
-task testOurClients(type: Test) {
-    useJUnitPlatform() {
-        includeTags("OurClients")
+        includeTags("ButtonsOrder")
     }
 }
 task testWhatWeAreTesting(type: Test) {
@@ -75,7 +72,7 @@ task testWhatWeAreTesting(type: Test) {
 }
 task testThreeReasonsToWork(type: Test) {
     useJUnitPlatform() {
-        includeTags("ThreeReasonsToWork")
+        includeTags("ThreeReasons")
     }
 }
 task testServiceCatalog(type: Test) {
@@ -91,11 +88,6 @@ task testHowWorking(type: Test) {
 task testIndustries(type: Test) {
     useJUnitPlatform() {
         includeTags("Industries")
-    }
-}
-task testExamples(type: Test) {
-    useJUnitPlatform() {
-        includeTags("Examples")
     }
 }
 task testClients(type: Test) {
