@@ -62,4 +62,5 @@ selenoid_Url = Url
 
 ### <img width="5%" title="Selenoid" src="src/test/resources/materials/pictures/Selenoid.png"> Видео теста на Selenoid
 
-https://github.com/Taygib/Functional_testing/blob/c33dad54f93c583a2662ff181732137cbc4fbcbf/src/test/resources/materials/video/testCatalog.mp4
+<img src="src/test/resources/materials/video/catalog.gif">
+
