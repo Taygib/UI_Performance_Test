@@ -34,7 +34,7 @@ public class MenuContainTest extends TastBase {
     @Tag("Research")
     @Tag("MenuContain")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка поиска")
+    @DisplayName("Проверка наличие подменю в меню главной страницы")
     void menuContain(ContainMenu menuSection, List<String> expectedButtons) {
 
         step("Открыть страницу", () -> {

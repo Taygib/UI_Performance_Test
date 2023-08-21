@@ -26,10 +26,6 @@ public class ServiceCatalogPage {
         catalog.shouldHave(text(testingOfBusinessProcess));
     }
 
-    //  public void clickOnOrderService() {
-        //      $(byAttribute("title", "Заказать услугу")).click();
-        //  }
-
     public void openSystemTesting(String systemTesting) {
         catalog.find(byText(systemTesting)).click();
     }

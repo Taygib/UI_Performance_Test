@@ -10,7 +10,7 @@ public class TitleField {
     public void fields() {
         step("Проверка меню для заказа услуг", () -> {
             step("Свяжитесь с нами", () -> {
-                order.titleСheck("Свяжитесь с нами");
+                order.сheckTitle("Свяжитесь с нами");
             });
 
             step("Имя", () -> {

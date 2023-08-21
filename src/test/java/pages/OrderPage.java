@@ -18,7 +18,7 @@ public class OrderPage {
             boxClose = $(".premium-modal-box-close-button-container"),
             boxModalTitle = $(".premium-modal-box-modal-title");
 
-    public void titleСheck(String ContactUs) {
+    public void сheckTitle(String ContactUs) {
         boxModalTitle.shouldHave(text(ContactUs));
     }
 

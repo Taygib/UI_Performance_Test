@@ -19,7 +19,7 @@
 
 ## :page_with_curl: Проверки
 
-##  <img width="5%" title="Jenkins" src="materials/pictures/Jenkins.png"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/Students/job/testX5Group/)  :gear:
+##  <img width="5%" title="Jenkins" src="src/test/resources/materials/pictures/Jenkins.png"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/Students/job/testX5Group/)  :gear:
 <p align="center">
 <img width="70%" title="Jenkins Build" src="materials/screens/Jenkins Start.png?raw=true">
  </p>
@@ -47,3 +47,17 @@ selenoid_Password = Password
 selenoid_Url = Url
 ```
 ## :bar_chart: Пример отчета о прохождении тестов в Allure и Telegram
+
+
+|        <img width="5%" title="Allure Report" src="src/test/resources/materials/pictures/Allure Report.png" > Allure <img src="materials/screens/test%20%E2%84%961%20MainPage.png?raw=true">        | <img width="5%" title="Allure Report" src="src/test/resources/materials/pictures/Allure Report.png" > Allure<img src="materials/screens/test%20%E2%84%961%20MainPage1.png?raw=true"> |
+|:-------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------:|
+
+<p align="center">
+<img width="3%" title="Telegram" src="src/test/resources/materials/pictures/Telegram.png">Telegram
+</p>
+<p align="center">
+<img width="45%"  src="materials/screens/test%20%E2%84%961%20MainPage2%20Telegram.png?raw=true">                                                                        
+ </p>
+
+
+### <img width="5%" title="Selenoid" src="src/test/resources/materials/pictures/Selenoid.png"> Видео теста на Selenoid

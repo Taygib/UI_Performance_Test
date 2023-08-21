@@ -19,7 +19,7 @@ public class HowWeAreWorkingTest extends TastBase {
     @Tag("HowWorking")
     @Owner("Taygib")
     @Severity(SeverityLevel.TRIVIAL)
-    @DisplayName("Проверка название шагов")
+    @DisplayName("Проверка названия и соответствия шагов")
     void howWeAreWorking() {
         step("Открыть страницу", () -> {
             open("/funkcionalnoe-testirovanie");
