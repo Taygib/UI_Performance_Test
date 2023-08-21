@@ -1,6 +1,7 @@
-#   Автотест страницы 
+#   Автотест страницы ПерфомансЛаб
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Автотест+страницы+ПерфомансЛаб)](https://www.performance-lab.ru/funkcionalnoe-testirovanie)
 
-
+- __*Перфоманс Лаб*__ (Performance Lab) — российская компания, сервис-провайдер в области тестирование программного обеспечения.
 
 
 <h2>  :hammer_and_wrench: Cтек </h2>
@@ -17,7 +18,10 @@
   <a href="https://junit.org/junit5/"><img width="6%" title="junit5" src="src/test/resources/materials/pictures/junit5.png"> </a>
 </p>
 
+
 ## :page_with_curl: Проверки
+- *Проверка меню *
+
 
 ##  <img width="5%" title="Jenkins" src="src/test/resources/materials/pictures/Jenkins.png"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/testPerformance/)  :gear:
 <p align="center">
