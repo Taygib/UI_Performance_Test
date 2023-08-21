@@ -61,3 +61,4 @@ selenoid_Url = Url
 
 
 ### <img width="5%" title="Selenoid" src="src/test/resources/materials/pictures/Selenoid.png"> Видео теста на Selenoid
+
