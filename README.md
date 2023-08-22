@@ -20,7 +20,7 @@
 
 
 ## :page_with_curl: Проверки
-- *Проверка кнопок =Заказать услугу=* 
+- *Проверка кнопок Заказать услугу* 
 - *Проверка название клиентов*
 - *Проверка названия и соответствия шагов*
 - *Проверка название отраслей*
@@ -52,7 +52,16 @@ __*Удаленно, из терминала:*__
 gradle clean test -DisRemote=true
 ```
 __*Удаленно, из Jenkins:*__
-
+```
+clean
+${TASK}
+-DisRemote=true
+-Dbrowser=${Browser}
+-DbrVersion=${BrVersion}
+-DbrSize=${BrSize}
+-DbaseUrl=${BaseUrl}
+-Dselenoid=${Selenoid}
+```
 
 ### Фаил test.properties
 Для запуска теста локально нужно создать фаил в папке resources (src/test/resources) и необходимо указать следующее параметры
