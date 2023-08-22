@@ -19,7 +19,7 @@ public class ClientsAboutUsTest extends TastBase {
     @Tag("Clients")
     @Owner("Taygib")
     @Severity(SeverityLevel.TRIVIAL)
-    @DisplayName("Проверка клиентов")
+    @DisplayName("Проверка название клиентов")
     void clientsAboutUs() {
         step("Открыть страницу", () -> {
             open("/funkcionalnoe-testirovanie");
